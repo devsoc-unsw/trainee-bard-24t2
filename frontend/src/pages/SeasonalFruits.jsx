@@ -6,15 +6,17 @@ function SeasonalFruits() {
   const { state } = useParams();
 
   // Example of fetching from backend ==> suggest that you put it in a separate file
-  useEffect(async () => {
-    try {
-      const response = await axios.get(`http://localhost:5180/seasonal-fruits?state=${state}`, {
-        method: 'GET',
-      });
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5180/seasonal-fruits?state=${state}`);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, [state]);
 
   return (
