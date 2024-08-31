@@ -4,6 +4,8 @@ import { FaArrowRight, FaAngleDown } from "react-icons/fa6";
 import background from "../assets/background_laptop_s.png";
 import landing_logo from "../assets/landing_logo.png";
 import "./Landing.css";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Landing() {
   return (
@@ -43,7 +45,6 @@ function Landing() {
           >
             <Button
               className="button1"
-              color="#7a71ca"
               variant="filled"
               size="lg"
               radius="md"
@@ -51,17 +52,18 @@ function Landing() {
             >
               See More
             </Button>
-            <Button
-              className="button2"
-              rightSection={<FaArrowRight />}
-              color="#7a71ca"
-              variant="outline"
-              size="lg"
-              radius="md"
-              fw={500}
-            >
-              Try Now
-            </Button>
+            <Link to="/home" style={{ textDecoration: "none" }}>
+              <Button
+                className="button2"
+                rightSection={<FaArrowRight />}
+                variant="outline"
+                size="lg"
+                radius="md"
+                fw={500}
+              >
+                Try Now
+              </Button>
+            </Link>
           </div>
 
           <FaAngleDown
