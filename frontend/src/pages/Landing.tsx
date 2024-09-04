@@ -10,8 +10,9 @@ function Landing() {
   return (
     <>
       <div className="landing-container">
+        <Navbar />
         <div className="hero-container">
-          <img src={landing_logo} alt="Logo" style={{ width: "32vw" }} />
+          <img src={landing_logo} alt="Logo" className="landing_logo" />
           <Text fz="1.5rem" fw={400} c="white" mt={8} mb={24}>
             Your guide to seasonal fruits and nutrients
           </Text>
