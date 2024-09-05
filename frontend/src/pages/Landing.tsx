@@ -4,7 +4,6 @@ import { FaArrowRight } from "react-icons/fa6";
 import landing_logo from "../assets/landing_logo.png";
 import "./Landing.css";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 function Landing() {
   return (
@@ -26,7 +25,7 @@ function Landing() {
             >
               See More
             </Button>
-            <Link to="/home" style={{ textDecoration: "none" }}>
+            <Link to="/home">
               <Button
                 className="button2"
                 rightSection={<FaArrowRight />}
