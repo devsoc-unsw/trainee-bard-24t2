@@ -62,3 +62,19 @@
   transform: translateX(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+.cross {
+  display: flex;
+  align-self: center;
+  margin-top: 14px;
+  color: #f3725e;
+  cursor: pointer;
+}
+
+.arrow {
+  display: flex;
+  align-self: center;
+  margin-top: 20px;
+  color: #f3725e;
+  cursor: pointer;
+}

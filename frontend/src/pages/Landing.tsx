@@ -10,7 +10,6 @@ function Landing() {
   return (
     <>
       <div className="landing-container">
-        <Navbar />
         <div className="hero-container">
           <img src={landing_logo} alt="Logo" className="landing_logo" />
           <Text fz="1.5rem" fw={400} c="white" mt={8} mb={24}>
