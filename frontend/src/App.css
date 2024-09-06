@@ -40,3 +40,7 @@
 .read-the-docs {
   color: #888;
 }
+
+.background-gradient {
+  background-image: linear-gradient(to right bottom, #ffdd94, #ffc699, #ffb3ab, #ffa7c3, #e1a3d8);
+}
