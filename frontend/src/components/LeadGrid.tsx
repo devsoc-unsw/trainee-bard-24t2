@@ -8,9 +8,6 @@ const TRIGGER_ANIMATION = false;
 export function LeadGrid() {
   const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
   const SUPER_SECONDARY_COL_HEIGHT = `calc(${SECONDARY_COL_HEIGHT} * 1.75  - var(--mantine-spacing-md) * 1.75 )`;
-
-  // TODO: FIX
-  document.body.className = "blue";
   
   return (
     <Container my="md">
@@ -36,7 +33,15 @@ export function LeadGrid() {
         {/* Bottom Grid */}
         <Grid gutter="md">
           <Grid.Col span={{ md: 24, sm: 12}}>
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+            {/* <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
+            <SimpleGrid cols={{ base: 1, sm: 6 }} spacing="md">
+              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+            </SimpleGrid>
           </Grid.Col>
         
         </Grid>
