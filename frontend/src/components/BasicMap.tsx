@@ -16,7 +16,7 @@ function BasicMap() {
         fit="contain"
         src="../../src/assets/map_of_aus_purple.png"
         />
-      <Overlay color="#000" backgroundOpacity={hovered ? 0.02:0.04} blur={hovered ? 0:10 } radius={"md"}/>
+      <Overlay color="#fff" backgroundOpacity={hovered ? 0.02:0.04} blur={hovered ? 0:10 } radius={"md"}/>
     </AspectRatio>
   );
 }
