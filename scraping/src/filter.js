@@ -473,6 +473,35 @@ const parseColes = (async () => {
     });
 });
 
+const combineData = () => {
+    const wfile = fs.readFileSync(`./assets/data_woolworths.json`);
+    let data = JSON.parse(wfile);
+
+    const existingFruits = data.map(fruit => fruit.fruit);
+    
+    const cfile = fs.readFileSync(`./assets/data_coles.json`);
+    const cdata = JSON.parse(cfile);
+
+    for(const fruitObj of cdata) {
+        if(existingFruits.includes(fruitObj.fruit)) {
+            const existingVariants = data.find(fruit => fruit.fruit === fruitObj.fruit).variants;
+            const existingVariantNames = existingVariants.map(variant => variant.name);
+
+            for(const fruitVariant of fruitObj.variants) {
+                if(existingVariantNames.includes(fruitVariant.name)) {
+                    let currentVariant = existingVariants.find(variant => variant.name === fruitVariant.name);
+                    currentVariant.urls = [...currentVariant.urls, ...fruitVariant.urls];
+                } else {
+                    existingVariants.push(fruitVariant);
+                }
+            }
+        } else {
+            data.push(fruitObj);
+        }
+    }
+    fs.writeFileSync(`./assets/data_final.json`, JSON.stringify(data, null, 2));
+}
+
 //cleaned('woolworths_fruits.json', 'woolworths');
 //categorised('woolworths_cleaned.json', 'woolworths');
 //parse('woolworths_fruits.json');
@@ -485,6 +514,8 @@ const parseColes = (async () => {
 // cleaned('coles_fruits.json', 'coles');
 //categorised('coles_cleaned.json', 'coles');
 //await addIds('dataset_coles.json', 'coles');
-await addNutrition('coles');
+//await addNutrition('coles');
+
+combineData();
 
 export default parse;
