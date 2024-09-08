@@ -1,0 +1,8 @@
+.main {
+    background-image: linear-gradient(to right bottom, #f7e4b4, #e7a23e, #e57260, #ffa7c3, #daa3d8);
+}
+
+.mainContainer {
+    margin-left: 65px;
+    min-height: 100vh;
+}
