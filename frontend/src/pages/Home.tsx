@@ -1,7 +1,6 @@
 import React from "react";
 import LeadGrid from "../components/LeadGrid";
 import '../App.css';
-import './Home.css';
 
 function Home() {
   // Gradient background from App.css
