@@ -69,28 +69,16 @@ function Navbar() {
       else show the cross */}
       {showText ? (
         <RxCross2
+          className={classes.cross}
           size={36}
           stroke-width="0.3"
           onClick={toggleTextVisibility}
-          style={{
-            display: "flex",
-            alignSelf: "center",
-            marginTop: "14px",
-            color: "#F3725E",
-            cursor: "pointer",
-          }}
         />
       ) : (
         <FaChevronRight
+          className={classes.arrow}
           size={25}
           onClick={toggleTextVisibility}
-          style={{
-            display: "flex",
-            alignSelf: "center",
-            marginTop: "20px",
-            color: "#F3725E",
-            cursor: "pointer",
-          }}
         />
       )}
 

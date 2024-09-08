@@ -1,48 +1,21 @@
 import React from "react";
 import { Text, Button } from "@mantine/core";
-import { FaArrowRight, FaAngleDown } from "react-icons/fa6";
-import background from "../assets/background_laptop_s.png";
+import { FaArrowRight } from "react-icons/fa6";
 import landing_logo from "../assets/landing_logo.png";
 import "./Landing.css";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 function Landing() {
   return (
     <>
-      <div
-        className="landing-container"
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <div
-          className="hero-container"
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            alignItems: "center",
-            justifyContent: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignContent: "center",
-          }}
-        >
-          <img src={landing_logo} alt="Logo" style={{ width: "32vw" }} />
+      <div className="landing-container">
+        <div className="hero-container">
+          <img src={landing_logo} alt="Logo" className="landing_logo" />
           <Text fz="1.5rem" fw={400} c="white" mt={8} mb={24}>
             Your guide to seasonal fruits and nutrients
           </Text>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "10px",
-            }}
-          >
+          <div className="button-container">
             <Button
               className="button1"
               variant="filled"
@@ -52,7 +25,7 @@ function Landing() {
             >
               See More
             </Button>
-            <Link to="/home" style={{ textDecoration: "none" }}>
+            <Link to="/home">
               <Button
                 className="button2"
                 rightSection={<FaArrowRight />}
@@ -65,12 +38,6 @@ function Landing() {
               </Button>
             </Link>
           </div>
-
-          <FaAngleDown
-            size={32}
-            color="#7a71ca"
-            style={{ position: "fixed", bottom: "0", marginBottom: "20px" }}
-          />
         </div>
       </div>
     </>
