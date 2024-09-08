@@ -10,7 +10,7 @@ function Fruit() {
   const { fruitId } = useParams();
 
   const nutrientCategories = [
-    { name: "Carbohydrates", color: ""},
+    { name: "Carbs", color: ""},
     { name: "Fat", color: ""},
     { name: "Protein", color: ""},
     { name: "Vitamins", color: ""},
@@ -19,7 +19,9 @@ function Fruit() {
 
   const nutrients = useMemo(() => {
     return nutrientCategories.map((category, index) => (
-      <div key={index} style={{ height: "14vh", backgroundColor: "white", margin: "1vh", marginRight: "2.5vh", borderRadius: "16px", zIndex: "2"}}>{category.name}</div>
+      <div key={index} style={{ height: "14vh", backgroundColor: "white", margin: "1vh", marginRight: "2.5vh", borderRadius: "16px", padding: "5px", display: "flex"}}>
+        <div style={{ height: "80px", width: "80px", borderRadius: "50%", backgroundColor: "#95D08B", lineHeight: "80px"}}>{category.name}</div>
+      </div>
     ))
   }, [nutrientCategories]);
 
@@ -49,7 +51,7 @@ function Fruit() {
           </Grid.Col>
           <Grid.Col offset={0.25} span={6}>
              <ScrollArea style={{ height: "61vh", borderRadius: "16px", position: "relative" }}>
-`              <div style={{
+              <div style={{
                 backgroundColor: "#f2f2f2",
                 height: "100%",
                 width: "100%",
@@ -61,7 +63,7 @@ function Fruit() {
               }} />
               <div style={{ position: "relative"}}>
                 {nutrients}
-              </div>`
+              </div>
               </ScrollArea>
           </Grid.Col>
         </Grid>
