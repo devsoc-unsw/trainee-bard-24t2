@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import fs from 'fs';
+import parse from './filter';
 
 const colesUrl = 'https://www.coles.com.au/browse/fruit-vegetables/fruit';
 const woolUrl = 'https://www.woolworths.com.au/shop/browse/fruit-veg/fruit/';
@@ -39,6 +40,10 @@ const cmain = async (url) => {
     await browser.close();
 }
 
+/**
+ * scraping fruit selection from Woolworths page
+ * @param {url} url for Woolworths fruit page url 
+ */
 const wmain = async (url) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -99,97 +104,11 @@ const wmain = async (url) => {
 
     console.log(products.length, 'items saved');
 
-    fs.writeFileSync('woolworths_fruits.json', JSON.stringify(products, null, 2));
+    fs.writeFileSync('./assets/woolworths_fruits.json', JSON.stringify(products, null, 2));
 
     await browser.close();
 }
 
-const parse = (fileName) => {
-    let fileContent = fs.readFileSync(fileName);
-    let fruits = JSON.parse(fileContent);
-
-    const cleaned = fruits.filter((fruit) => 
-        !fruit.name.includes('Juice') && 
-        !(fruit.name.includes('Fruit') && !fruit.name.includes('Kiwi')) 
-        && !fruit.name.includes('Platter')
-        && !fruit.name.includes('Mix')
-        && !fruit.name.includes('Chocolate')
-        && !fruit.name.includes('Cut'))
-        .map((fruit) => {
-            const ogName = fruit.name;
-            let newName = ogName;
-
-            const number = ogName.match(/\d/);
-            if(number && (number.index > 0 && ogName[(number.index-1)] == " ")) {
-                newName = ogName.slice(0, number.index);
-            }
-
-            // remove words ending with g
-            const regex = new RegExp(`\\b\\w*g\\b`, 'gi');
-            newName = newName.replace(regex, "").replace(/\s+/g, " ").trim();
-
-            newName = newName.replace("Woolworths", "").trim();
-            newName = newName.replace("Each", "").trim();
-            newName = newName.replace("Punnet", "").trim();
-            newName = newName.replace("Fresh", "").trim();
-            newName = newName.replace("Food", "").trim();
-            newName = newName.replace("Prepacked", "").trim();
-            newName = newName.replace("Quarter", "").trim();
-            newName = newName.replace("Half", "").trim();
-            newName = newName.replace("Whole", "").trim();
-            newName = newName.replace("Large", "").trim();
-            newName = newName.replace("Good To Go", "").trim();
-
-            if(newName.includes("Kids") && !newName.includes("Mini")) {
-                newName = newName.replace("Kids", "Mini").trim();
-            } else {
-                newName = newName.replace("Kids", "").trim();
-            }
-
-            fruit.name = newName;
-
-            return fruit;
-
-            //console.log(`old name: ${ogName}, new name: ${newName}`);
-        });
-
-        //checking for common words
-        let keyWords = {};
-        
-        cleaned.forEach((fruit) => {
-            const words = fruit.name.split(" ");
-
-            for(let i = 1; i <= words.length; i++) {
-                const cur = words.slice(0, i).join(" ");
-                if(!(cur in keyWords)) {
-                    keyWords[cur] = 0;
-                }
-                keyWords[cur]++;
-            }
-
-            for(let i = 1; i < words.length; i++) {
-                const cur = words.slice(i, words.length).join(" ");
-                if(!(cur in keyWords)) {
-                    keyWords[cur] = 0;
-                }
-                keyWords[cur]++;
-            }
-        });
-
-        keyWords = Object.fromEntries(
-            Object.entries(keyWords).filter(([key, value]) => {value > 1})
-        );
-
-        // keyWords = Object.fromEntries(
-        //     Object.entries(keyWords).filter(([key, value]) => {
-        //         const filtered = Object.keys(keyWords).filter(word => word != key && word.includes(key) && keyWords[word] == value);
-        //         return filtered.length > 0;
-        //     })
-        // );
-        console.log(keyWords);
-}
-
-
 //cmain(colesUrl);
-//wmain(woolUrl);
+wmain(woolUrl);
 parse('woolworths_fruits.json');
