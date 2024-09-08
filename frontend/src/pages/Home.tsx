@@ -1,5 +1,5 @@
 import React from "react";
-import LeadGrid from "../components/LeadGrid";
+import { LeadGrid, Space } from "../components/LeadGrid";
 import '../App.css';
 
 function Home() {
@@ -9,7 +9,7 @@ function Home() {
   return (
     <div>
       <LeadGrid/>
-      <h1>Home Page :3</h1>
+      {/* <h1>Home Page :3</h1> */}
     </div>
   );
 }

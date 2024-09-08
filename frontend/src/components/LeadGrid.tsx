@@ -3,6 +3,8 @@ import { Container, Grid, SimpleGrid, Skeleton, rem, Space } from '@mantine/core
 import BasicMap from "./BasicMap";
 import HomeVitaminsDisplay from "./VitaminsDisplay";
 import { HomeSearch } from "./HomeSearch";
+import Game from "./Game";
+import Surprise from "./Surprise";
 
 const PRIMARY_COL_HEIGHT = rem(300);
 const TRIGGER_ANIMATION = false;
@@ -13,7 +15,10 @@ export function LeadGrid() {
   
   return (
     <Container my="md">
-      
+      {/* TODO: Insert Logo */}
+      {/* Top Padding */}
+      <Space h="xl" />
+
       <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
         {/* Top Left Grid */}
         <BasicMap/>
@@ -22,12 +27,14 @@ export function LeadGrid() {
         <Grid>
         {/* Top Right Grid */}
         <Grid.Col span={12}>
-            <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+            {/* <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
+            <Game height={SUPER_SECONDARY_COL_HEIGHT}/>
         </Grid.Col>
 
         {/* Middle Higer Right Grid */}
         <Grid.Col span={12}>
-            <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
+            {/* <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
+            <Surprise height={SUPER_SECONDARY_COL_HEIGHT}/>
         </Grid.Col>
 
         </Grid>
@@ -46,11 +53,11 @@ export function LeadGrid() {
       <Space h="xl" />
 
       <Grid>
-        <Grid.Col span={3}></Grid.Col>
+        <Grid.Col span={3.5}></Grid.Col>
         <Grid.Col span="auto">
           <HomeSearch/>
         </Grid.Col>
-        <Grid.Col span={3}></Grid.Col>
+        <Grid.Col span={3.5}></Grid.Col>
       </Grid>
       
 
