@@ -7,8 +7,8 @@ import classes from "./BasicMap.module.css";
 function BasicMap() {
   const { hovered, ref } = useHover();
   return (
-    <AspectRatio maw={500} mx="auto" pos="relative" ref={ref}>
-      <Image className={classes.box}
+    <AspectRatio maw={500} mx="auto" pos="relative" ref={ref} className={classes.box}>
+      <Image 
         radius="md"
         // h={200}
         h={"100%"}
