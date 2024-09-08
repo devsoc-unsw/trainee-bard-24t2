@@ -1,0 +1,125 @@
+.RoundedButtonA {
+    width: 80px;
+    height: 80px;
+    background: #e57260;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: xx-large;
+}
+
+.RoundedButtonA:hover {
+    background: #b2664a;
+}
+
+.RoundedButtonB {
+    width: 80px;
+    height: 80px;
+    background: #f9dd95;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: xx-large;
+    color: black;
+}
+
+.RoundedButtonB:hover {
+    background: #f0ad06ac;
+    color: black;
+}
+
+.RoundedButtonC {
+    width: 80px;
+    height: 80px;
+    background: #83a4d1;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: xx-large;
+}
+
+.RoundedButtonC:hover {
+    background: #536784;
+}
+
+.RoundedButtonD {
+    width: 80px;
+    height: 80px;
+    background: #daa3d8;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: xx-large;
+    color: black;
+}
+
+.RoundedButtonD:hover {
+    background: #8d698c;
+    color: black;
+}
+
+.RoundedButtonE {
+    width: 80px;
+    height: 80px;
+    background: #9ed08b;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: xx-large;
+    color: black;
+}
+
+.RoundedButtonE:hover {
+    background: #638357;
+    color: black;
+}
+
+.RoundedButtonPlus {
+    width: 80px;
+    height: 80px;
+    background: #7c71ca;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: xx-large;
+}
+
+.RoundedButtonPlus:hover {
+    background: #4d467d;
+}

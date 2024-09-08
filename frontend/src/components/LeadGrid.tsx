@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Grid, SimpleGrid, Skeleton, rem } from '@mantine/core';
 import BasicMap from "./BasicMap";
+import HomeVitaminsDisplay from "./VitaminsDisplay";
 
 const PRIMARY_COL_HEIGHT = rem(300);
 const TRIGGER_ANIMATION = false;
@@ -34,14 +35,7 @@ export function LeadGrid() {
         <Grid gutter="md">
           <Grid.Col span={{ md: 24, sm: 12}}>
             {/* <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
-            <SimpleGrid cols={{ base: 1, sm: 6 }} spacing="md">
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} />
-            </SimpleGrid>
+            <HomeVitaminsDisplay height={SECONDARY_COL_HEIGHT}/>
           </Grid.Col>
         
         </Grid>
