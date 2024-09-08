@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Grid, SimpleGrid, Skeleton, rem } from '@mantine/core';
+import { Container, Grid, SimpleGrid, Skeleton, rem, Space } from '@mantine/core';
 import BasicMap from "./BasicMap";
 import HomeVitaminsDisplay from "./VitaminsDisplay";
+import { HomeSearch } from "./HomeSearch";
 
 const PRIMARY_COL_HEIGHT = rem(300);
 const TRIGGER_ANIMATION = false;
@@ -41,6 +42,17 @@ export function LeadGrid() {
         </Grid>
 
       </SimpleGrid>
+
+      <Space h="xl" />
+
+      <Grid>
+        <Grid.Col span={3}></Grid.Col>
+        <Grid.Col span="auto">
+          <HomeSearch/>
+        </Grid.Col>
+        <Grid.Col span={3}></Grid.Col>
+      </Grid>
+      
 
     </Container>
   );

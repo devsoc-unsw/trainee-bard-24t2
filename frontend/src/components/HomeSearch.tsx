@@ -9,7 +9,7 @@ export function HomeSearch(props: TextInputProps) {
     <TextInput
       radius="xl"
       size="md"
-      placeholder="Search questions"
+      placeholder="Search For Another Nutrient"
       rightSectionWidth={42}
       leftSection={<IconSearch style={{ width: rem(18), height: rem(18) }} stroke={1.5} />}
       rightSection={
