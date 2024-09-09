@@ -1,0 +1,60 @@
+.container {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stateImage {
+  margin-top: 2rem;
+  width: 36rem;
+  align-self: center;
+  z-index: 0;
+}
+
+.nswImage {
+  width: 11.1rem;
+  align-self: center;
+  z-index: 1;
+  margin-left: 23.65rem;
+  margin-top: -14.65rem;
+  cursor: pointer;
+}
+
+.buttonContainer {
+  align-self: flex-end;
+  margin-top: 4rem;
+  margin-right: 8rem;
+}
+
+.button {
+  color: white !important;
+  border-color: white !important;
+  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.2);
+  border-width: 3px !important;
+  transition: 0.1s;
+  &:disabled,
+  &[data-disabled] {
+    color: #d9d9d9 !important;
+    background-color: transparent;
+    border-color: #d9d9d9 !important;
+  }
+}
+
+.button:hover {
+  color: #7a71ca !important;
+  border-color: #7a71ca !important;
+
+  transition: 0.1s;
+}
