@@ -1,26 +1,49 @@
 import React, { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { AppShell, Button, Grid, ScrollArea } from '@mantine/core';
+import { AppShell, Button, List, Grid, ScrollArea } from '@mantine/core';
 import { FaArrowLeft } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
-import FruitPageClasses from "./Fruit.module.css";
+import NutrientDisplay from "../components/NutrientDisplay";
+import FruitStyles from "./Fruit.module.css";
 import FruitImage from "../assets/tempfruit.png";
 
 function Fruit() {
   const { fruitId } = useParams();
 
   const nutrientCategories = [
-    { name: "Carbs", color: ""},
-    { name: "Fat", color: ""},
-    { name: "Protein", color: ""},
-    { name: "Vitamins", color: ""},
-    { name: "Other", color: ""}
+    { name: "Carbs", color: "#F3725E"},
+    { name: "Fat", color: "#95D08B"},
+    { name: "Protein", color: "#E1A3D8"},
+    { name: "Vitamins", color: "#FFDD94"},
+    { name: "Other", color: "#7AA4D1"}
   ]
 
   const nutrients = useMemo(() => {
     return nutrientCategories.map((category, index) => (
-      <div key={index} style={{ height: "14vh", backgroundColor: "white", margin: "1vh", marginRight: "2.5vh", borderRadius: "16px", padding: "5px", display: "flex"}}>
-        <div style={{ height: "80px", width: "80px", borderRadius: "50%", backgroundColor: "#95D08B", lineHeight: "80px"}}>{category.name}</div>
+      <div key={index} className={`${FruitStyles.nutrientContainer} ${FruitStyles.shadow}`}>
+        <div className={FruitStyles.nutrientCategoryBox}>
+          <NutrientDisplay name={category.name} color={category.color}/>
+        </div>
+        <div className={FruitStyles.nutrientInfo}>
+          {/* Same as <ul> and <li> elements */}
+          {/* TODO: Change to fit nutrient values */}
+          <List>
+            <List.Item>Clone or download repository from GitHub</List.Item>
+            <List.Item>Install dependencies with yarn</List.Item>
+          </List>
+        </div>
+        <div className={FruitStyles.nutrientButtonWrapper}>
+          <Button
+            variant="outline"
+            size="md"
+            radius="md"
+            fw={500}
+            color="black"
+            className={FruitStyles.shadow}
+          >
+            See more
+          </Button>
+        </div>
       </div>
     ))
   }, [nutrientCategories]);
@@ -28,15 +51,15 @@ function Fruit() {
   return (
     <AppShell>
       <Navbar/>
-      <AppShell.Main className={FruitPageClasses.main}>
+      <AppShell.Main className={FruitStyles.main}>
         {/* Gutter causes overflow issues */}
-        <Grid gutter="0" align="stretch" className={FruitPageClasses.mainContainer}>
+        <Grid gutter="0" align="stretch" className={FruitStyles.mainContainer}>
           <Grid.Col span={12}>
-            <h1 style={{ margin: "8vh"}}>Cherry</h1>
+            <h1 className={FruitStyles.pageHeader}>Fruit {fruitId}</h1>
           </Grid.Col>
-          <Grid.Col offset={0.25} span={5} style={{height: "65vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-            <img src={FruitImage} alt="Image of Fruit" style={{ width: "18vw"}}/>
-            {/* placeholder for actual search bar */}
+          <Grid.Col offset={0.25} span={5} className={FruitStyles.bottomLeftContainer}>
+            <img src={FruitImage} alt="Image of Fruit" className={FruitStyles.fruitImage}/>
+            {/* Temporary: placeholder for actual search bar */}
             <div style={{ width: "23vw", height: "40px", backgroundColor: "#fff", lineHeight: "40px", borderRadius: "20px"}}>Search bar</div>
             <Button
                 className="button2"
@@ -50,18 +73,10 @@ function Fruit() {
               </Button>
           </Grid.Col>
           <Grid.Col offset={0.25} span={6}>
-             <ScrollArea style={{ height: "61vh", borderRadius: "16px", position: "relative" }}>
-              <div style={{
-                backgroundColor: "#f2f2f2",
-                height: "100%",
-                width: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                opacity: "0.7",
-                borderRadius: "16px"
-              }} />
-              <div style={{ position: "relative"}}>
+             <ScrollArea type="always" className={FruitStyles.scrollable}>
+              {/* Needed because opacity ruined the white colour of the nutrient containers */}
+              <div className={FruitStyles.opaqueBackground}/>
+              <div className={FruitStyles.nutrientsContainerWrapper}>
                 {nutrients}
               </div>
               </ScrollArea>
