@@ -180,6 +180,42 @@ function SeasonalFruits() {
             fruitPic={cherry}
             fruitSeasonality="inSeason"
           />
+          <FruitBox
+            fruitId={1}
+            fruitName="Cherry"
+            fruitPic={cherry}
+            fruitSeasonality="inSeason"
+          />
+          <FruitBox
+            fruitId={1}
+            fruitName="Cherry"
+            fruitPic={cherry}
+            fruitSeasonality="inSeason"
+          />
+          <FruitBox
+            fruitId={1}
+            fruitName="Cherry"
+            fruitPic={cherry}
+            fruitSeasonality="inSeason"
+          />
+          <FruitBox
+            fruitId={1}
+            fruitName="Cherry"
+            fruitPic={cherry}
+            fruitSeasonality="inSeason"
+          />
+          <FruitBox
+            fruitId={1}
+            fruitName="Cherry"
+            fruitPic={cherry}
+            fruitSeasonality="inSeason"
+          />
+          <FruitBox
+            fruitId={1}
+            fruitName="Cherry"
+            fruitPic={cherry}
+            fruitSeasonality="inSeason"
+          />
           {/* {filteredFruit.map((fruitItem) => (
             <FruitBox
               key={fruitItem.fruitId}
