@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { AppShell, Button, List, Grid, ScrollArea } from '@mantine/core';
 import { FaArrowLeft } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
@@ -61,7 +61,8 @@ function Fruit() {
             <img src={FruitImage} alt="Image of Fruit" className={FruitStyles.fruitImage}/>
             {/* Temporary: placeholder for actual search bar */}
             <div style={{ width: "23vw", height: "40px", backgroundColor: "#fff", lineHeight: "40px", borderRadius: "20px"}}>Search bar</div>
-            <Button
+            <Link to="/search">
+              <Button
                 className="button2"
                 leftSection={<FaArrowLeft />}
                 variant="outline"
@@ -71,6 +72,7 @@ function Fruit() {
               >
                 Other fruits
               </Button>
+            </Link>
           </Grid.Col>
           <Grid.Col offset={0.25} span={6}>
              <ScrollArea type="always" className={FruitStyles.scrollable}>
