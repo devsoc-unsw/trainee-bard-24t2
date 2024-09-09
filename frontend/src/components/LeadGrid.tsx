@@ -15,9 +15,6 @@ export function LeadGrid() {
   
   return (
     <Container my="md">
-      {/* TODO: Insert Logo */}
-      {/* Top Padding */}
-      <Space h="xl" />
 
       <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
         {/* Top Left Grid */}
@@ -50,7 +47,7 @@ export function LeadGrid() {
 
       </SimpleGrid>
 
-      <Space h="xl" />
+      <Space h="md" />
 
       <Grid>
         <Grid.Col span={3.5}></Grid.Col>
@@ -60,7 +57,6 @@ export function LeadGrid() {
         <Grid.Col span={3.5}></Grid.Col>
       </Grid>
       
-
     </Container>
   );
 }

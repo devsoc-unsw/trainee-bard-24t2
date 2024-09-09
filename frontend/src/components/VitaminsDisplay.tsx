@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Skeleton, Container } from "@mantine/core";
+import { Container } from "@mantine/core";
 import styles from "./VitaminsDisplay.module.css";
 import VitaminButton from "./VitaminButtons";
 

@@ -1,125 +1,49 @@
-.RoundedButtonA {
-    width: 80px;
-    height: 80px;
-    background: #e57260;
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    text-decoration: none;
-    transition: background 0.2s;
-    font-size: xx-large;
+.flex {
+    justify-content: space-around;
+    direction:row;
 }
 
-.RoundedButtonA:hover {
-    background: #b2664a;
-}
-
-.RoundedButtonB {
+button.RoundedButton {
     width: 80px;
     height: 80px;
-    background: #f9dd95;
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    text-decoration: none;
-    transition: background 0.2s;
     font-size: xx-large;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+button.RoundedButton:hover {
+    background-color: transparent;
+    border: transparent;
+}
+
+button.One {
+    background-color: #F3725E;
+}
+
+button.Two {
+    background-color: #FFDD94;
     color: black;
 }
 
-.RoundedButtonB:hover {
-    background: #f0ad06ac;
+button.Three {
+    background-color: #7AA4D1;
     color: black;
-}
 
-.RoundedButtonC {
-    width: 80px;
-    height: 80px;
-    background: #83a4d1;
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    text-decoration: none;
-    transition: background 0.2s;
-    font-size: xx-large;
 }
-
-.RoundedButtonC:hover {
-    background: #536784;
+button.Four {
+    background-color: #E1A3D8;
+    color: white;
 }
-
-.RoundedButtonD {
-    width: 80px;
-    height: 80px;
-    background: #daa3d8;
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    text-decoration: none;
-    transition: background 0.2s;
-    font-size: xx-large;
+button.Five {
+    background-color: #95D08B;
     color: black;
+
+}
+button.Six {
+    background-color: #7A71CA;
+    color: white;
 }
 
-.RoundedButtonD:hover {
-    background: #8d698c;
-    color: black;
-}
-
-.RoundedButtonE {
-    width: 80px;
-    height: 80px;
-    background: #9ed08b;
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    text-decoration: none;
-    transition: background 0.2s;
-    font-size: xx-large;
-    color: black;
-}
-
-.RoundedButtonE:hover {
-    background: #638357;
-    color: black;
-}
-
-.RoundedButtonPlus {
-    width: 80px;
-    height: 80px;
-    background: #7c71ca;
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    text-decoration: none;
-    transition: background 0.2s;
-    font-size: xx-large;
-}
-
-.RoundedButtonPlus:hover {
-    background: #4d467d;
+button:hover {
+    opacity: 70%;
 }

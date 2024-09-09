@@ -1,13 +1,15 @@
 import React from "react";
-import { LeadGrid, Space } from "../components/LeadGrid";
+import { LeadGrid } from "../components/LeadGrid";
 import '../App.css';
+import logo from "../assets/logo_fruit_o.png";
+import './Home.css';
 
 function Home() {
-  // Gradient background from App.css
-  document.body.className = "background-gradient";  
-  
   return (
-    <div>
+    <div className="background-gradient">
+      <div>
+        <img src={logo} alt="Logo" className="home-logo" />
+      </div>
       <LeadGrid/>
       {/* <h1>Home Page :3</h1> */}
     </div>
