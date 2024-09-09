@@ -1,9 +1,11 @@
 .container {
-  background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
+  background-image: linear-gradient(
+    to right bottom,
+    #f7e4b4,
+    #e7a23e,
+    #e57260,
+    #ffa7c3,
+    #daa3d8
   );
   background-size: cover;
   width: 100vw;
