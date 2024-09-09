@@ -2,6 +2,7 @@
 import express, { Request, Response } from 'express';
 import { SERVER_PORT } from '../../config.json';
 import { seasonalFruitsByState } from './routes/seasonal-fruits';
+import { getFruits } from './config/db';
 
 const errorHandler = require('http-errors-middleware');
 const cors = require('cors');
@@ -93,3 +94,7 @@ app.use(errorHandler( { debug : true }));
 app.listen(SERVER_PORT, () => {
   console.log(`Server running on port http://localhost:${SERVER_PORT}`);
 });
+
+
+//testing db
+getFruits();
