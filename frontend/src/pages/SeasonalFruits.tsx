@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -11,6 +11,10 @@ import cherry from "../assets/cherry.png";
 
 function SeasonalFruits() {
   const { state } = useParams();
+  const [fruit, setFruit] = useState([]);
+  const [sortOption, setSortOption] = useState("Seasonality");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [seasonFilter, setSeasonFilter] = useState("");
 
   // Example of fetching from backend ==> suggest that you put it in a separate file
   useEffect(() => {
@@ -20,6 +24,9 @@ function SeasonalFruits() {
           `http://localhost:5180/seasonal-fruits?state=${state}`
         );
         console.log(response.data);
+
+        const data = response.data;
+        setFruit(data.fruit);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -51,6 +58,45 @@ function SeasonalFruits() {
     }
   };
 
+  // const filteredFruit = fruit
+  //   .filter((fruitItem) => {
+  //     const matchesSearch = fruitItem.name
+  //       .toLowerCase()
+  //       .includes(searchQuery.toLowerCase());
+
+  //     let matchesSeason;
+
+  //     // If season filter clicked then show all fruits
+  //     // that match the filter, else show all
+  //     if (seasonFilter) {
+  //       matchesSeason = fruitItem.seasonality === seasonFilter;
+  //     } else {
+  //       matchesSeason = true;
+  //     }
+
+  //     if (matchesSearch && matchesSeason) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   })
+  //   .sort((a, b) => {
+  //     if (sortOption === "Seasonality") {
+  //       const seasonOrder = {
+  //         inSeason: 1,
+  //         likely: 2,
+  //         notInSeason: 3,
+  //         none: 4,
+  //       };
+
+  //       return seasonOrder[a.seasonality] - seasonOrder[b.seasonality];
+  //     } else if (sortOption === "Alphabetical") {
+  //       return a.name.localeCompare(b.name);
+  //     } else {
+  //       return 0;
+  //     }
+  //   });
+
   const arrowIcon = <LuArrowDownUp />;
   const searchIcon = <IoSearchSharp />;
 
@@ -59,16 +105,15 @@ function SeasonalFruits() {
       <Navbar />
 
       <div className={classes.innerContainer}>
-        <h1 className={classes.title}>
+        <h2 className={classes.title}>
           <span> {fullStateName(state)} </span> <br />{" "}
           <span className={classes.titleText}> Seasonal fruits </span>
-        </h1>
+        </h2>
 
         <div className={classes.filtersBar}>
           <div className={classes.sortBy}>
             <Select
               checkIconPosition="right"
-              // label="Sort by:"
               data={["Seasonality", "Alphabetical", "Option 3"]}
               defaultValue="Seasonality"
               leftSectionPointerEvents="none"
@@ -78,6 +123,7 @@ function SeasonalFruits() {
                 offset: 0,
                 transitionProps: { transition: "pop", duration: 200 },
               }}
+              // onChange={(value) => setSortOption(value)}
             />
           </div>
           <div className={classes.searchBar}>
@@ -87,18 +133,42 @@ function SeasonalFruits() {
               rightSectionPointerEvents="none"
               rightSection={searchIcon}
               radius={8}
+              onChange={(value) => setSearchQuery(value)}
             />
           </div>
 
           <div className={classes.seasonButtons}>
-            <Button variant="filled" radius={8} className={classes.button1}>
+            <Button
+              variant="filled"
+              radius={8}
+              className={classes.button1}
+              onClick={() => setSeasonFilter("inSeason")}
+            >
               In-season
             </Button>
-            <Button variant="filled" radius={8} className={classes.button2}>
+            <Button
+              variant="filled"
+              radius={8}
+              className={classes.button2}
+              onClick={() => setSeasonFilter("likely")}
+            >
               Likely
             </Button>
-            <Button variant="filled" radius={8} className={classes.button3}>
+            <Button
+              variant="filled"
+              radius={8}
+              className={classes.button3}
+              onClick={() => setSeasonFilter("notInSeason")}
+            >
               Not in-season
+            </Button>
+            <Button
+              variant="filled"
+              radius={8}
+              className={classes.button4}
+              onClick={() => setSeasonFilter("")}
+            >
+              All
             </Button>
           </div>
         </div>
@@ -110,36 +180,15 @@ function SeasonalFruits() {
             fruitPic={cherry}
             fruitSeasonality="inSeason"
           />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
+          {/* {filteredFruit.map((fruitItem) => (
+            <FruitBox
+              key={fruitItem.fruitId}
+              fruitId={fruitItem.fruitId}
+              fruitName={fruitItem.name}
+              fruitPic={fruitItem.imageUrl || cherry}
+              fruitSeasonality={fruitItem.seasonality}
+            />
+          ))} */}
         </div>
       </div>
     </div>

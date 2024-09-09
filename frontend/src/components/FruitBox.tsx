@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
+import classes from "./FruitBox.module.css";
 
 type FruitBox = {
   fruitId: number;
@@ -34,13 +35,15 @@ export default function FruitBox({
     <>
       <Link to={`/fruit/${fruitId}`}>
         <Box
-          bg="white"
-          bd={`2px solid ${seasonColour(fruitSeasonality)}`}
+          className={classes.box}
+          bd={`5px solid ${seasonColour(fruitSeasonality)}`}
           w={"16rem"}
           h={"14rem"}
         >
-          <img src={fruitPic} />
-          <Text> {fruitName} </Text>
+          <img src={fruitPic} className={classes.fruitImage} />
+          <Text fz="1.15rem" fw={600} c="black">
+            {fruitName}
+          </Text>
         </Box>
       </Link>
     </>
