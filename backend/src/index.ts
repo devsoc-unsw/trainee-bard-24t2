@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import { SERVER_PORT } from '../../config.json';
 import { seasonalFruitsByState } from './routes/seasonal-fruits';
 import { validSearchTerms } from './routes/valid-search-terms';
+import { search } from './routes/nutrient';
 import { getFruits, getDb } from './config/db';
 
 const errorHandler = require('http-errors-middleware');
@@ -23,8 +24,12 @@ app.get('/seasonal-fruits/', (req: Request, res: Response) => {
     return res.json(seasonalFruitsByState(state as String));
 });
 
-app.get('/valid-search-terms/', (req: Request, res: Response) => {
-    return res.json(validSearchTerms());
+app.get('/valid-search-terms/', async (req: Request, res: Response) => {
+      try {
+        return res.json(await validSearchTerms());
+      } catch (error) {
+        return res.status(400).json({ message: 'Bad Request' });
+      }
 });
 
 /*
@@ -99,7 +104,6 @@ app.use(errorHandler( { debug : true }));
 app.listen(SERVER_PORT, () => {
   console.log(`Server running on port http://localhost:${SERVER_PORT}`);
 });
-
 
 //testing db
 //addImages(getDb());
