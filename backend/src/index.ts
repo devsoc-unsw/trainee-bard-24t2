@@ -2,7 +2,8 @@
 import express, { Request, Response } from 'express';
 import { SERVER_PORT } from '../../config.json';
 import { seasonalFruitsByState } from './routes/seasonal-fruits';
-import { getFruits } from './config/db';
+import { validSearchTerms } from './routes/valid-search-terms';
+import { getFruits, getDb } from './config/db';
 
 const errorHandler = require('http-errors-middleware');
 const cors = require('cors');
@@ -20,6 +21,10 @@ app.get('/seasonal-fruits/', (req: Request, res: Response) => {
     const { state } = req.query;
 
     return res.json(seasonalFruitsByState(state as String));
+});
+
+app.get('/valid-search-terms/', (req: Request, res: Response) => {
+    return res.json(validSearchTerms());
 });
 
 /*
@@ -97,4 +102,4 @@ app.listen(SERVER_PORT, () => {
 
 
 //testing db
-getFruits();
+//addImages(getDb());
