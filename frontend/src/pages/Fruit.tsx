@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { AppShell, Button, List, Grid, ScrollArea } from '@mantine/core';
+import { Autocomplete, AppShell, Button, List, Grid, ScrollArea } from '@mantine/core';
 import { FaArrowLeft } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
 import NutrientDisplay from "../components/NutrientDisplay";
@@ -11,11 +11,31 @@ function Fruit() {
   const { fruitId } = useParams();
 
   const nutrientCategories = [
-    { name: "Carbs", color: "#F3725E"},
-    { name: "Fat", color: "#95D08B"},
-    { name: "Protein", color: "#E1A3D8"},
-    { name: "Vitamins", color: "#FFDD94"},
-    { name: "Other", color: "#7AA4D1"}
+    { name: "Vitamins", color: "#F3725E", nutrients: [
+      { name: "Vitamin C", percDI: "16%" },
+      { name: "Vitamin E", percDI: "4%" },
+      { name: "Vitamin K", percDI: "16%" }
+    ]},
+    { name: "Macros", color: "#95D08B", nutrients: [
+      { name: "Vitamin C", percDI: "16%" },
+      { name: "Vitamin E", percDI: "4%" },
+      { name: "Vitamin K", percDI: "16%" }
+    ]},
+    { name: "Minerals", color: "#E1A3D8", nutrients: [
+      { name: "Vitamin C", percDI: "16%" },
+      { name: "Vitamin E", percDI: "4%" },
+      { name: "Vitamin K", percDI: "16%" }
+    ]},
+    { name: "Essentials", color: "#FFDD94", nutrients: [
+      { name: "Vitamin C", percDI: "16%" },
+      { name: "Vitamin E", percDI: "4%" },
+      { name: "Vitamin K", percDI: "16%" }
+    ]},
+    { name: "Other", color: "#7AA4D1", nutrients: [
+      { name: "Vitamin C", percDI: "16%" },
+      { name: "Vitamin E", percDI: "4%" },
+      { name: "Vitamin K", percDI: "16%" }
+    ]}
   ]
 
   const nutrients = useMemo(() => {
@@ -28,7 +48,8 @@ function Fruit() {
           {/* Same as <ul> and <li> elements */}
           {/* TODO: Change to fit nutrient values */}
           <List>
-            <List.Item>Clone or download repository from GitHub</List.Item>
+            <List.Item>{`${category.nutrients[0].name}: ${category.nutrients[0].percDI}`}</List.Item>
+            <List.Item>Install dependencies with yarn</List.Item>
             <List.Item>Install dependencies with yarn</List.Item>
           </List>
         </div>
@@ -60,7 +81,7 @@ function Fruit() {
           <Grid.Col offset={0.25} span={5} className={FruitStyles.bottomLeftContainer}>
             <img src={FruitImage} alt="Image of Fruit" className={FruitStyles.fruitImage}/>
             {/* Temporary: placeholder for actual search bar */}
-            <div style={{ width: "23vw", height: "40px", backgroundColor: "#fff", lineHeight: "40px", borderRadius: "20px"}}>Search bar</div>
+            <Autocomplete placeholder="FIll me in" className={FruitStyles.bananas}/>
             <Link to="/search">
               <Button
                 className="button2"

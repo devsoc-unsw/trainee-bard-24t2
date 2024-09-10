@@ -78,3 +78,8 @@
 .shadow {
     box-shadow: 0 1px 3px #555;
 }
+
+.bananas input::placeholder {
+    border-radius: 5px;
+    color: red;
+}
