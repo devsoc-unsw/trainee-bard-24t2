@@ -102,42 +102,6 @@ function Nutrients() {
             fruitPic={cherry}
             fruitSeasonality="none"
           />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
           {/* {filteredFruit.map((fruitItem) => (
             <FruitBox
               key={fruitItem.fruitId}
