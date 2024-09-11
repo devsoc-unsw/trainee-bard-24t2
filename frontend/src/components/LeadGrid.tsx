@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, SimpleGrid, Skeleton, rem, Space } from '@mantine/core';
+import { Container, Grid, SimpleGrid, rem, Space } from '@mantine/core';
 import BasicMap from "./BasicMap";
 import HomeVitaminsDisplay from "./VitaminsDisplay";
 import { HomeSearch } from "./HomeSearch";
@@ -22,17 +22,17 @@ export function LeadGrid() {
         {/* <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
         
         <Grid>
-        {/* Top Right Grid */}
-        <Grid.Col span={12}>
+          {/* Top Right Grid */}
+          <Grid.Col span={12}>
             {/* <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
             <Game height={SUPER_SECONDARY_COL_HEIGHT}/>
-        </Grid.Col>
+          </Grid.Col>
 
-        {/* Middle Higer Right Grid */}
-        <Grid.Col span={12}>
+          {/* Middle Higer Right Grid */}
+          <Grid.Col span={12}>
             {/* <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
             <Surprise height={SUPER_SECONDARY_COL_HEIGHT}/>
-        </Grid.Col>
+          </Grid.Col>
 
         </Grid>
         
