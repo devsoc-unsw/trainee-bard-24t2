@@ -8,15 +8,17 @@
 .Text1 {
   position: absolute;
   top: 40%;
+  height: 10%;
   margin: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .Text2 {
   position: absolute;
+  height: 10%;
   top: 45%;
   margin: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .Box:hover {
