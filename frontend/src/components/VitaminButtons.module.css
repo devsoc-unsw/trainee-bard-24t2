@@ -1,0 +1,49 @@
+.flex {
+    justify-content: space-around;
+    direction:row;
+}
+
+button.RoundedButton {
+    width: 80px;
+    height: 80px;
+    font-size: xx-large;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+button.RoundedButton:hover {
+    background-color: transparent;
+    border: transparent;
+}
+
+button.One {
+    background-color: #F3725E;
+}
+
+button.Two {
+    background-color: #FFDD94;
+    color: black;
+}
+
+button.Three {
+    background-color: #7AA4D1;
+    color: black;
+
+}
+button.Four {
+    background-color: #E1A3D8;
+    color: white;
+}
+button.Five {
+    background-color: #95D08B;
+    color: black;
+
+}
+button.Six {
+    background-color: #7A71CA;
+    color: white;
+}
+
+button:hover {
+    opacity: 70%;
+}
