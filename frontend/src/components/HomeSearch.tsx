@@ -38,7 +38,7 @@ export function HomeSearch() {
 
     if (selectedItem) {
       if (selectedItem.type === 'fruit') {
-        navigate(`/Fruit/${value}`); 
+        navigate(`/fruit/${value}`); 
       } else if (selectedItem.type === 'nutrient') {
         navigate(`/nutrients/${value}`);
       }
