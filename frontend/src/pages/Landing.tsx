@@ -1,17 +1,46 @@
 import React from "react";
-import { Button } from "@mantine/core";
+import { Text, Button } from "@mantine/core";
+import { FaArrowRight } from "react-icons/fa6";
+import landing_logo from "../assets/landing_logo.png";
+import "./Landing.css";
+import { Link } from "react-router-dom";
 
 function Landing() {
   return (
-    <div>
-      {/* Example Usage for Mantine Components */}
-      <Button variant="filled" size="xl" radius="md">Button</Button>
-      <h1>Landing Page xD</h1>
-      <p>Type /route into link to go the page u wanna go to :P</p>
-      <a href="https://docs.google.com/document/d/1iFcgbbb_5nNqy9EMgA2oaZ2ZTpvSof95XA_n9mv16kI/edit">
-        <button>Click here to see routes</button>
-      </a>
-    </div>
+    <>
+      <div className="landing-container">
+        <div className="hero-container">
+          <img src={landing_logo} alt="Logo" className="landing_logo" />
+          <Text fz="1.5rem" fw={400} c="white" mt={8} mb={24}>
+            Your guide to seasonal fruits and nutrients
+          </Text>
+
+          <div className="button-container">
+            <Button
+              className="button1"
+              variant="filled"
+              size="lg"
+              radius="md"
+              fw={500}
+            >
+              See More
+            </Button>
+            <Link to="/home">
+              <Button
+                className="button2"
+                rightSection={<FaArrowRight />}
+                variant="outline"
+                size="lg"
+                radius="md"
+                fw={500}
+              >
+                Try Now
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
