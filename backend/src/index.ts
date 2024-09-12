@@ -4,7 +4,9 @@ import { SERVER_PORT } from '../../config.json';
 import { seasonalFruitsByState } from './routes/seasonal-fruits';
 import { validSearchTerms } from './routes/valid-search-terms';
 import { searchNutrient } from './routes/nutrient';
+import { getFruitNutrition } from './routes/fruit';
 import { getFruits, getDb } from './config/db';
+import { printUniqueNutrients } from './util/printNutrients';
 import cron from 'node-cron';
 import { updateSeasonality } from './util/seasonality';
 import { getAllItems } from './routes/items';
@@ -89,6 +91,16 @@ app.get('/nutrient/:name', async (req: Request, res: Response) => {
     }
 });
 
+app.get('/fruit/', async (req: Request, res: Response) => {
+  try {
+    const { fruit, variantId } = req.query;
+
+    return res.json(await getFruitNutrition(fruit as String, Number(variantId)));
+  } catch (error: any) {
+    return res.status(400).json({ message: error.message || 'An error occured' });
+  }
+});
+
 /**
  
 route for retrieving list of all fruits
@@ -115,3 +127,4 @@ app.listen(SERVER_PORT, () => {
 
 //testing db
 //addImages(getDb());
+printUniqueNutrients();
