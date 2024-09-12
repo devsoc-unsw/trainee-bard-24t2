@@ -17,15 +17,15 @@ export async function printUniqueNutrients() {
     }
 
     // Clear file
-    fs.writeFile("./src/utils/Nutrient List.txt", "", (err: any) => {
+    fs.writeFile("./src/utils/nutrient_list.txt", "", (err: any) => {
         if (err) throw err;
     });
 
     const sortedNames = [...(nutrientNames)]
-    sortedNames.sort();
+    sortedNames.sort((a, b) => a.localeCompare(b));
 
     for (const name of sortedNames) {
-        fs.appendFile("./src/utils/Nutrient List.txt", `${name}\n`, (err: any) => {
+        fs.appendFile("./src/utils/nutrient_list.txt", `${name}\n`, (err: any) => {
             if (err) throw err;
         });
     }
