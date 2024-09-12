@@ -1,5 +1,7 @@
 // Helper functions that would help a lot :D
 
+import { getFruits } from "../config/db"
+
 // Variant interface from the database
 interface databaseVariant {
     nutrition: databaseNutrition
@@ -34,7 +36,7 @@ interface Nutrient {
 }
 
 const MACROS = ["Fat", "Carbohydrates", "Protein"]
-const CARB_TYPES = ["Sugar", "Fiber"]
+const CARB_TYPES = ["Sugar", "Fiber", "Net Carbohydrates"]
 const OTHER_VITAMINS = ["Folate", "Folic Acid"]
 const OTHER_MINERALS = ["Copper", "Fluoride", "Iron", "Manganese", "Phosphorus", "Zinc"];
 
@@ -70,7 +72,7 @@ export function organiseNutrients(variant: databaseVariant): Nutrition {
         } else if (MACROS.includes(name)) {
             // Place main macro in corresponding macro field.
             result.macros[name.toLowerCase() as keyof typeof result.macros].push(n);
-        } else if (name.endsWith("fat")) {
+        } else if (name.endsWith("Fat")) {
             result.macros.fat.push(n);
         } else if (CARB_TYPES.includes(name)) {
             result.macros.carbohydrates.push(n);
@@ -80,4 +82,19 @@ export function organiseNutrients(variant: databaseVariant): Nutrition {
     }
 
     return result;
+}
+
+// Function to test the output of the above function
+export async function testOrganiseNutrients() {
+    const fruits = await getFruits();
+    const fruit = fruits[10].variants[0];
+
+    console.log(fruit);
+
+    console.log(organiseNutrients(fruit));
+
+    console.log(organiseNutrients(fruit).macros.carbohydrates);
+
+    console.log(organiseNutrients(fruit).macros.fat);
+    console.log(organiseNutrients(fruit).macros.protein);
 }
