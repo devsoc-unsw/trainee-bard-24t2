@@ -9,6 +9,7 @@
     border: 1px solid rgba(255, 255, 255, 0.073);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     height: 225px;
+    cursor: pointer;
 }
 
 .GameText {
