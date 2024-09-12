@@ -6,6 +6,8 @@ import { validSearchTerms } from './routes/valid-search-terms';
 import { searchNutrient } from './routes/nutrient';
 import { getFruits, getDb } from './config/db';
 import { printUniqueNutrients } from './utils/printNutrients';
+import cron from 'node-cron';
+import { updateSeasonality } from './util/seasonality';
 
 const errorHandler = require('http-errors-middleware');
 const cors = require('cors');
@@ -13,6 +15,23 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+/**
+ * daily seasonality calculator - set to run at 9am each day.
+ * 
+ * Seasonality values:
+ *           1 - in season
+ *           0 - sort of in season
+ *          -1 - not in season
+ */
+cron.schedule('0 9 * * *', async () => {
+  try {
+    updateSeasonality();
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 
 app.get('/', (req: Request, res: Response) => {
     console.log('Hello, TypeScript with Express :)))!');
@@ -69,73 +88,6 @@ app.get('/nutrient/:name', async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Bad Request'});
     }
 });
-
-/*
-app.post('/login', async (req: Request, res: Response, next : NextFunction) => {
-  const { gID, password } = req.body;
-  
-  try {
-    const d = await login(gID, password);
-    res.send(d);
-  } catch (e) {
-    next(e);
-  }
-});
-
-app.get('/notices', async (req: Request, res: Response, next: NextFunction) => {
-
-  try {
-    const result = await notices();
-    res.send(result);
-  } catch (e) {
-    next(e);
-  }
-});
-
-app.get('/studentDetails', async (req: Request, res: Response, next: NextFunction) => {
-  const { gID } = req.query;
-
-  try {
-    const result = await studentDetails(gID as string);
-    res.send(result);
-  } catch (e) {
-    next(e);
-  }
-});
-
-app.get('/staffDetails', async (req: Request, res: Response, next: NextFunction) => {
-  const { gID } = req.query;
-
-  try {
-    const result = await staffDetails(gID as string);
-    res.send(result);
-  } catch (e) {
-    next(e);
-  }
-
-});
-
-app.get('/studentCards', async (req: Request, res: Response, next: NextFunction) => {
-
-  try {
-    const result = await studentCards();
-    res.send(result);
-  } catch (e) {
-    next(e);
-  }
-});
-
-app.post('/enrolStudent', async (req: Request, res: Response, next: NextFunction) => {
-  const { gID, name, password, profileUrl, degree, house } = req.body;
-
-  try {
-    const result = await enrolStudent(gID, name, password, profileUrl, degree, house);
-    res.send(result);
-  } catch (e) {
-    next(e);
-  }
-
-});*/
 
 app.use(errorHandler( { debug : true }));
 

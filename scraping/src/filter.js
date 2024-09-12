@@ -502,6 +502,46 @@ const combineData = () => {
     fs.writeFileSync(`./assets/data_final.json`, JSON.stringify(data, null, 2));
 }
 
+const getImages = async () => {
+    const fruitNameFile = fs.readFileSync('./assets/fruits.json');
+    let fruitNames = JSON.parse(fruitNameFile);
+
+    let images = {};
+
+    for(const names of fruitNames) {
+        const name = names.split("/")[0];
+        await new Promise(async (resolve, reject) => {
+            https.get(`https://pixabay.com/api/?key=45886776-57de388504fe94bd39bd3fd4a&q=${name}&image_type=illustration&colors=transparent&category=food`, res => {
+                let data = [];
+
+                res.on('data', chunk => {
+                    data.push(chunk);
+                });
+    
+                res.on('end', () => {
+                    try {
+                        const result = JSON.parse(Buffer.concat(data).toString());
+                        if(result.totalHits > 0) {
+                            const imageUrl = result.hits[0].webformatURL;
+                            console.log(imageUrl);
+                            images[name] = imageUrl;
+                        } else {
+                            images[name] = "undefined"
+                        }
+                        resolve();
+                    } catch (error) {
+                        console.error("error: ", error);
+                    }
+                });
+            }).on('error', error => {
+                reject(error);
+            }); 
+        });
+        await new Promise(r => setTimeout(r, 100));
+    }
+    fs.writeFileSync('./assets/fruit_images.json', JSON.stringify(images, null, 2));
+}
+
 //cleaned('woolworths_fruits.json', 'woolworths');
 //categorised('woolworths_cleaned.json', 'woolworths');
 //parse('woolworths_fruits.json');
@@ -516,6 +556,8 @@ const combineData = () => {
 //await addIds('dataset_coles.json', 'coles');
 //await addNutrition('coles');
 
-combineData();
+//combineData();
+
+getImages();
 
 export default parse;
