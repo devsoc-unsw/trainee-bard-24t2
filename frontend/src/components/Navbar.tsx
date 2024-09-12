@@ -38,7 +38,7 @@ const icondata = [
   { link: "/state-map", icon: FaLocationDot, label: "Map" },
   { link: "/game", icon: FaGamepad, label: "Game" },
   { link: "/surprise", icon: FaDice, label: "Surprise" },
-  { link: "/nutrients", icon: CgPill, label: "Vitamin" },
+  { link: "/nutrientsSearch", icon: CgPill, label: "Vitamin" },
 ];
 
 function Navbar() {
