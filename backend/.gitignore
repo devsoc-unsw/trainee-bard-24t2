@@ -1,4 +1,4 @@
 node_modules
 .env
 .venv
-src/utils/nutrient_list.txt
+src/util/nutrient_list.txt

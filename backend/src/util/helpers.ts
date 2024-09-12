@@ -17,7 +17,7 @@ interface databaseNutrition {
         }>
 }
 
-interface Nutrition {
+export interface Nutrition {
     vitamins: Array<Nutrient>
     macros: {
         fat: Array<Nutrient>
@@ -61,9 +61,7 @@ export function organiseNutrients(variant: databaseVariant): Nutrition {
     const nutrients = variant.nutrition.nutrients;
 
     for (const n of nutrients) {
-        const { name, amount } = n;
-
-        if (amount === 0) continue;
+        const { name } = n;
 
         if (name.startsWith("Vitamin") || OTHER_VITAMINS.includes(name)) {
             result.vitamins.push(n);

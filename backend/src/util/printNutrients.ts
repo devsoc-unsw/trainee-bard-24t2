@@ -1,6 +1,8 @@
 import { getFruits } from "../config/db";
 
-const fs = require('fs')
+const fs = require('fs');
+
+const NUTRIENT_LIST_PATH = "./src/util/nutrient_list.txt";
 
 export async function printUniqueNutrients() {
     const fruits = await getFruits();
@@ -17,15 +19,16 @@ export async function printUniqueNutrients() {
     }
 
     // Clear file
-    fs.writeFile("./src/utils/nutrient_list.txt", "", (err: any) => {
+    fs.writeFile(NUTRIENT_LIST_PATH, "", (err: any) => {
         if (err) throw err;
     });
 
-    const sortedNames = [...(nutrientNames)]
+    // Brendan: idk why it's not alphabetically sorting properly
+    const sortedNames = [...(nutrientNames)];
     sortedNames.sort((a, b) => a.localeCompare(b));
 
     for (const name of sortedNames) {
-        fs.appendFile("./src/utils/nutrient_list.txt", `${name}\n`, (err: any) => {
+        fs.appendFile(NUTRIENT_LIST_PATH, `${name}\n`, (err: any) => {
             if (err) throw err;
         });
     }
