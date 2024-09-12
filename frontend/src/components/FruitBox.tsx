@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import classes from "./FruitBox.module.css";
 
 type FruitBox = {
-  fruitId: number;
   fruitName: string;
   fruitPic: string;
   fruitSeasonality: string;
 };
 
 export default function FruitBox({
-  fruitId,
   fruitName,
   fruitPic,
   fruitSeasonality,
@@ -33,7 +31,7 @@ export default function FruitBox({
 
   return (
     <>
-      <Link to={`/fruit/${fruitId}`}>
+      <Link to={`/fruit/${fruitName}`}>
         <Box
           className={classes.box}
           bd={`5px solid ${seasonColour(fruitSeasonality)}`}

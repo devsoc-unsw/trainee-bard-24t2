@@ -10,8 +10,15 @@ import FruitBox from "../components/FruitBox";
 import cherry from "../assets/cherry.png";
 import axios from "axios";
 
+type Fruit = {
+  name: string;
+  image: string;
+  value: number;
+  fruitSeasonality: string;
+};
+
 function Nutrients() {
-  const { nutrientId } = useParams();
+  const { nutrientName } = useParams();
   const [fruit, setFruit] = useState([]);
   const [sortOption, setSortOption] = useState("High to low");
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,35 +32,35 @@ function Nutrients() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5180/nutrients?nutrientId=${nutrientId}`
+          `http://localhost:5180/nutrient/${nutrientName}`
         );
         console.log(response.data);
 
         const data = response.data;
-        setFruit(data.fruit);
+        setFruit(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [nutrientId]);
+  }, [nutrientName]);
 
-  // const filteredFruit = fruit
-  //   .filter((fruitItem) => {
-  //     return fruitItem.name.toLowerCase().includes(searchQuery.toLowerCase());
-  //   })
-  //   .sort((a, b) => {
-  //     if (sortOption === "High to low") {
-  //       return b.nutrientValue - a.nutrientValue;
-  //     } else if (sortOption === "Low to high") {
-  //       return a.nutrientValue - b.nutrientValue;
-  //     } else if (sortOption === "Alphabetical") {
-  //       return a.name.localeCompare(b.name);
-  //     } else {
-  //       return 0;
-  //     }
-  //   });
+  const filteredFruit: Fruit[] = fruit
+    .filter((fruitItem: Fruit) => {
+      return fruitItem.name.toLowerCase().includes(searchQuery.toLowerCase());
+    })
+    .sort((a: Fruit, b: Fruit) => {
+      if (sortOption === "High to low") {
+        return b.value - a.value;
+      } else if (sortOption === "Low to high") {
+        return a.value - b.value;
+      } else if (sortOption === "Alphabetical") {
+        return a.name.localeCompare(b.name);
+      } else {
+        return 0;
+      }
+    });
 
   return (
     <div className={classes.container}>
@@ -62,7 +69,9 @@ function Nutrients() {
       <div className={classes.innerContainer}>
         <h2 className={classes.title}>
           <span> Fruits high in </span> <br />
-          <span className={classes.titleText}>{nutrientId?.toUpperCase()}</span>
+          <span className={classes.titleText}>
+            {nutrientName?.toUpperCase()}
+          </span>
         </h2>
 
         <div className={classes.filtersBar}>
@@ -78,7 +87,7 @@ function Nutrients() {
                 offset: 0,
                 transitionProps: { transition: "pop", duration: 200 },
               }}
-              // onChange={(value) => setSortOption(value)}
+              onChange={(value) => setSortOption(value ?? "High to low")}
             />
           </div>
           <div className={classes.searchBar}>
@@ -90,27 +99,25 @@ function Nutrients() {
               rightSectionPointerEvents="none"
               rightSection={searchIcon}
               radius={8}
-              // onChange={(value) => setSearchQuery(value)}
+              onChange={(value) => setSearchQuery(value)}
             />
           </div>
         </div>
 
         <div className={classes.fruit}>
           <FruitBox
-            fruitId={1}
             fruitName="Cherry"
             fruitPic={cherry}
             fruitSeasonality="none"
           />
-          {/* {filteredFruit.map((fruitItem) => (
+          {filteredFruit.map((fruitItem) => (
             <FruitBox
-              key={fruitItem.fruitId}
-              fruitId={fruitItem.fruitId}
+              key={fruitItem.name}
               fruitName={fruitItem.name}
-              fruitPic={fruitItem.imageUrl || cherry}
-              fruitSeasonality={fruitItem.seasonality}
+              fruitPic={fruitItem.image}
+              fruitSeasonality="none"
             />
-          ))} */}
+          ))}
         </div>
       </div>
     </div>
