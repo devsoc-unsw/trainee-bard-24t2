@@ -64,6 +64,7 @@ export default function NutrientsSearch() {
           <NutrientBox nutrientName="Protein" nutrientPic={protein} />
           <NutrientBox nutrientName="Calcium" nutrientPic={calcium} />
           <NutrientBox nutrientName="Iron" nutrientPic={iron} />
+          {/* TODO: fix since its represented as Carbohydrates */}
           <NutrientBox nutrientName="Carbs" nutrientPic={carbs} />
         </div>
       </div>
