@@ -9,6 +9,7 @@ import { getFruits, getDb } from './config/db';
 import { printUniqueNutrients } from './util/printNutrients';
 import cron from 'node-cron';
 import { updateSeasonality } from './util/seasonality';
+import { getAllItems } from './routes/items';
 
 const errorHandler = require('http-errors-middleware');
 const cors = require('cors');
@@ -99,6 +100,24 @@ app.get('/fruit/', async (req: Request, res: Response) => {
     return res.status(400).json({ message: error.message || 'An error occured' });
   }
 });
+
+/**
+ 
+route for retrieving list of all fruits
+return format:
+{
+name: string - name of fruit
+image: string - image URL for fruit
+}
+*/
+app.get('/getAllItems', async (req: Request, res: Response) => {
+  try {
+    const items = await getAllItems();
+    res.status(200).json({ items });
+  } catch (error) {
+    return res.status(400).json({ message: 'Bas Request' })
+  }
+})
 
 app.use(errorHandler( { debug : true }));
 

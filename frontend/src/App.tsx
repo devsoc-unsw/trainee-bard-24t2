@@ -10,6 +10,7 @@ import Fruit from "./pages/Fruit";
 import Search from "./pages/Search";
 import Game from "./pages/Game";
 import Surprise from "./pages/Surprise";
+import NutrientsSearch from "./pages/NutrientsSearch";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/state-map" element={<StateMap />} />
         <Route path="/seasonal-fruits/:state" element={<SeasonalFruits />} />
-        <Route path="/nutrients/:nutrientId" element={<Nutrients />} />
+        <Route path="/nutrientsSearch" element={<NutrientsSearch />} />
+        <Route path="/nutrients/:nutrientName" element={<Nutrients />} />
         <Route path="/fruit/:fruitId" element={<Fruit />} />
         <Route path="/search" element={<Search />} />
         <Route path="/game" element={<Game />} />

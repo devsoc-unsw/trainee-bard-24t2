@@ -1,0 +1,62 @@
+.container {
+  background-image: linear-gradient(
+    to right bottom,
+    #f7e4b4,
+    #e7a23e,
+    #e57260,
+    #ffa7c3,
+    #daa3d8
+  );
+  background-size: cover;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8rem;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.titleText {
+  color: #f3725e;
+}
+
+.filtersBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 10rem;
+}
+
+.sortBy {
+  display: flex;
+  text-align: left;
+}
+
+.searchBar {
+  display: flex;
+  margin-left: 4rem;
+}
+
+.autocomplete {
+  width: 400px;
+}
+
+.fruit {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-self: center;
+  row-gap: 1rem;
+  column-gap: 2rem;
+  width: 70%;
+}
