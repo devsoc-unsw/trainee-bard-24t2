@@ -4,6 +4,14 @@ import Navbar from "../components/Navbar";
 import { Autocomplete } from "@mantine/core";
 import { IoSearchSharp } from "react-icons/io5";
 import FruitBox from "../components/FruitBox";
+import axios from "axios";
+import NutrientBox from "../components/NutrientBox";
+import sugar from "../assets/sugar.png";
+import magnesium from "../assets/magnesium.png";
+import protein from "../assets/protein.png";
+import calcium from "../assets/calcium.png";
+import iron from "../assets/iron.png";
+import carbs from "../assets/carbs.png";
 
 export default function NutrientsSearch() {
   const [fruit, setFruit] = useState([]);
@@ -51,11 +59,12 @@ export default function NutrientsSearch() {
         </div>
 
         <div className={classes.fruit}>
-          <FruitBox
-            fruitName="Cherry"
-            fruitPic="none"
-            fruitSeasonality="none"
-          />
+          <NutrientBox nutrientName="Sugar" nutrientPic={sugar} />
+          <NutrientBox nutrientName="Magnesium" nutrientPic={magnesium} />
+          <NutrientBox nutrientName="Protein" nutrientPic={protein} />
+          <NutrientBox nutrientName="Calcium" nutrientPic={calcium} />
+          <NutrientBox nutrientName="Iron" nutrientPic={iron} />
+          <NutrientBox nutrientName="Carbs" nutrientPic={carbs} />
         </div>
       </div>
     </div>
