@@ -5,6 +5,7 @@ import { seasonalFruitsByState } from './routes/seasonal-fruits';
 import { validSearchTerms } from './routes/valid-search-terms';
 import { searchNutrient } from './routes/nutrient';
 import { getFruits, getDb } from './config/db';
+import { printUniqueNutrients } from './utils/printNutrients';
 
 const errorHandler = require('http-errors-middleware');
 const cors = require('cors');
@@ -144,3 +145,4 @@ app.listen(SERVER_PORT, () => {
 
 //testing db
 //addImages(getDb());
+printUniqueNutrients();
