@@ -191,14 +191,18 @@ function SeasonalFruits() {
         </div>
 
         <div className={classes.fruit}>
-          {filteredFruit.map((fruitItem) => (
-            <FruitBox
-              key={fruitItem.variant_name}
-              fruitName={fruitItem.variant_name}
-              fruitPic={fruitItem.image}
-              fruitSeasonality={fruitItem.seasonality}
-            />
-          ))}
+          {filteredFruit.length > 0 ? (
+            filteredFruit.map((fruitItem) => (
+              <FruitBox
+                key={fruitItem.variant_name}
+                fruitName={fruitItem.variant_name}
+                fruitPic={fruitItem.image}
+                fruitSeasonality={fruitItem.seasonality}
+              />
+            ))
+          ) : (
+            <div className={classes.noFruitFound}>No fruits found</div>
+          )}
         </div>
       </div>
     </div>

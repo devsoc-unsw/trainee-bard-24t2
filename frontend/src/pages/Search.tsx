@@ -11,7 +11,7 @@ import axios from "axios";
 type Fruit = {
   name: string;
   image: string;
-  fruitSeasonality: string;
+  fruitSeasonality: number;
 };
 
 function Search() {
@@ -74,7 +74,7 @@ function Search() {
                 key={fruitItem.name}
                 fruitName={fruitItem.name}
                 fruitPic={fruitItem.image}
-                fruitSeasonality="none"
+                fruitSeasonality={-2}
               />
             ))
           ) : (

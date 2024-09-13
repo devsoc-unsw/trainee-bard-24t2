@@ -14,7 +14,7 @@ type Fruit = {
   name: string;
   image: string;
   value: number;
-  fruitSeasonality: string;
+  fruitSeasonality: number;
 };
 
 function Nutrients() {
@@ -111,7 +111,7 @@ function Nutrients() {
                 key={fruitItem.name}
                 fruitName={fruitItem.name}
                 fruitPic={fruitItem.image}
-                fruitSeasonality="none"
+                fruitSeasonality={-2}
               />
             ))
           ) : (
