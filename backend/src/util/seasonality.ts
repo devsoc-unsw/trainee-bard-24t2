@@ -30,18 +30,23 @@ export async function updateSeasonality() {
         for(let i = 0; i < variants.length; i++) {
             let variant = variants[i];
 
+            let wooliesExists = false;
+            let colesExists = false;
+
             let wooliesInSeason = false;
             let colesInSeason = false;
 
             for(const url of variant.urls) {
                 let priceData;
                 if(url.includes("coles")) {
+                    colesExists = true;
                     if(!!colesInSeason) {
                         continue;
                     }
                     const urlId = parseInt(url.split("/").pop()?.split("-").pop() as string);
                     priceData = colesJson.find(item => item.id === urlId);
                 } else if(url.includes("woolworths")) {
+                    wooliesExists = true;
                     if(!!wooliesInSeason) {
                         continue;
                     }
@@ -80,6 +85,12 @@ export async function updateSeasonality() {
                         }
                     }
                 }
+            }
+
+            if(!colesExists) {
+                colesInSeason = wooliesInSeason;
+            } else if(!wooliesExists) {
+                wooliesInSeason = colesInSeason;
             }
 
             let seasonality = colesInSeason && wooliesInSeason ? 1 
