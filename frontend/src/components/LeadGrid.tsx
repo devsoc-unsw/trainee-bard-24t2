@@ -3,7 +3,7 @@ import { Container, Grid, SimpleGrid, rem, Space } from '@mantine/core';
 import BasicMap from "./BasicMap";
 import HomeVitaminsDisplay from "./VitaminsDisplay";
 import { HomeSearch } from "./HomeSearch";
-import Game from "./Game";
+import GameLink from "./GameLink";
 import Surprise from "./Surprise";
 
 const PRIMARY_COL_HEIGHT = rem(300);
@@ -25,7 +25,7 @@ export function LeadGrid() {
           {/* Top Right Grid */}
           <Grid.Col span={12}>
             {/* <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
-            <Game height={SUPER_SECONDARY_COL_HEIGHT}/>
+            <GameLink height={SUPER_SECONDARY_COL_HEIGHT}/>
           </Grid.Col>
 
           {/* Middle Higer Right Grid */}
