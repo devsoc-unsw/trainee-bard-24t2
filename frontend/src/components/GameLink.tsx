@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@mantine/core";
+import { Container, Image } from "@mantine/core";
 import { Link } from 'react-router-dom';
 import styles from "./GameLink.module.css";
 
