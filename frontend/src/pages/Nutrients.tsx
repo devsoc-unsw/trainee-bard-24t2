@@ -105,19 +105,20 @@ function Nutrients() {
         </div>
 
         <div className={classes.fruit}>
-          <FruitBox
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          {filteredFruit.map((fruitItem) => (
-            <FruitBox
-              key={fruitItem.name}
-              fruitName={fruitItem.name}
-              fruitPic={fruitItem.image}
-              fruitSeasonality="none"
-            />
-          ))}
+          {filteredFruit.length > 0 ? (
+            filteredFruit.map((fruitItem) => (
+              <FruitBox
+                key={fruitItem.name}
+                fruitName={fruitItem.name}
+                fruitPic={fruitItem.image}
+                fruitSeasonality="none"
+              />
+            ))
+          ) : (
+            <div className={classes.noFruitFound}>
+              No fruits found with nutrient "{nutrientName?.toUpperCase()}"
+            </div>
+          )}
         </div>
       </div>
     </div>
