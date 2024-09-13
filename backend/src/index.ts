@@ -40,10 +40,30 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello, TypeScript with Express :)))!');
 });
 
-app.get('/seasonal-fruits/', (req: Request, res: Response) => {
-    const { state } = req.query;
 
-    return res.json(seasonalFruitsByState(state as String));
+/**
+ * 
+ * route for retrieving list of fruits by state with seasonality
+ * 
+ * parameters: 
+ *     state: string - state to get seasonality data for
+ * return format:
+ * {
+ *    fruit: string  -  name of fruit (parent)
+ *    variant_name: string  -  name of fruit variant
+ *    image: string  -  url for fruit image
+ *    seasonality: number  -  variant's seasonality state in the format defined above
+ * }
+ */
+app.get('/seasonal-fruits/:state', async (req: Request, res: Response) => {
+    try {
+      const state = req.params.state;
+      console.log(state);
+
+      return res.json(await seasonalFruitsByState(state));
+    } catch (error) {
+      return res.status(400).json({ message: 'Bad Request' });
+    }
 });
 
 /**
@@ -66,6 +86,8 @@ app.get('/valid-search-terms/', async (req: Request, res: Response) => {
 /**
  * route for retrieving data used for fruits containing specific nutrient search result page
  * 
+ * parameters: 
+ *    name: string - name of nutrient
  * optional queries:
  *    amount: number  - if searching for fruits with nutrients above/below certain amount
  *    greaterThan: boolean  -  determing whether to search above (or ===) or below value.

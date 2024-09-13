@@ -15,24 +15,11 @@ export async function validSearchTerms() : Promise<Word[]> {
         });
     });
 
-    Object.entries(fruits[0].variants[0].nutrition).forEach(([objName, nutriType]) => {
-        if(Array.isArray(nutriType)) {
-            nutriType.forEach((nutri: {name: string}) => {
-                words.push({
-                    type: "nutrient",
-                    word: nutri.name
-                });
-            });
-        } else {
-            if(objName !== "weightPerServing") {
-                Object.keys(nutriType as Object).forEach((nutrient: string) => {
-                    words.push({
-                        type: "nutrient",
-                        word: nutrient
-                    })
-                });
-            }
-        }
+    fruits[0].variants[0].nutrition.nutrients.forEach((nutrient: { name: string}) => {
+        words.push({
+            type: "nutrient",
+            word: nutrient.name
+        });
     });
 
     return words;
