@@ -6,6 +6,7 @@ import classes from "./SeasonalFruits.module.css";
 import { Autocomplete, Box, Button, Select } from "@mantine/core";
 import { LuArrowDownUp } from "react-icons/lu";
 import { IoSearchSharp } from "react-icons/io5";
+import logoIcon from "../assets/logo-search-bar.png";
 import FruitBox from "../components/FruitBox";
 import cherry from "../assets/cherry.png";
 
@@ -99,6 +100,7 @@ function SeasonalFruits() {
 
   const arrowIcon = <LuArrowDownUp />;
   const searchIcon = <IoSearchSharp />;
+  const logoImg = <img src={logoIcon} alt="Logo" style={{ width: 20 }} />;
 
   return (
     <div className={classes.container}>
@@ -130,6 +132,8 @@ function SeasonalFruits() {
             <Autocomplete
               className={classes.autocomplete}
               placeholder="Find a fruit"
+              leftSectionPointerEvents="none"
+              leftSection={logoImg}
               rightSectionPointerEvents="none"
               rightSection={searchIcon}
               radius={8}
