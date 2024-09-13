@@ -6,6 +6,8 @@ import "./Landing.css";
 import { Link } from "react-router-dom";
 
 function Landing() {
+  document.body.className="moving_background";
+
   return (
     <>
       <div className="landing-container">
