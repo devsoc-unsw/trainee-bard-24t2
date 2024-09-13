@@ -24,33 +24,16 @@ export async function searchNutrient(nutrient: string, amount?: number, greaterT
 
     frootLoop: for(const fruit of fruits) {
         for(const variant of fruit.variants) {
-                
-            for(const [objName, nutriType] of Object.entries(variant.nutrition)) {
-                if(Array.isArray(nutriType)) {
-                    const res = nutriType.find((nutri: {name: string, amount: number}) => 
-                        nutri.name.toLowerCase() === nutrientLower && compare(nutri.amount)
-                    );
-                    if(res) {
-                        searchResults.push({
-                            name: fruit.fruit,
-                            image: fruit.image,
-                            value: res.amount
-                        });
-                        continue frootLoop;
-                    }
-                } else if(objName !== "weightPerServing") {
-                    const res = Object.entries(nutriType as Object).find(([key, value]) => 
-                        key.toLowerCase() === nutrientLower && compare(value)
-                    );
-                    if(res) {
-                        searchResults.push({
-                            name: fruit.fruit,
-                            image: fruit.image,
-                            value: res[1]
-                        });
-                        continue frootLoop;
-                    }
-                }
+            const res = variant.nutrition.nutrients.find((nutri: {name: string, amount: number}) => 
+                nutri.name.toLowerCase() === nutrientLower && compare(nutri.amount)
+            );
+            if(res) {
+                searchResults.push({
+                    name: fruit.fruit,
+                    image: fruit.image,
+                    value: res.amount
+                });
+                continue frootLoop;
             }
         }
     }
