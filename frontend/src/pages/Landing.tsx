@@ -6,6 +6,8 @@ import "./Landing.css";
 import { Link } from "react-router-dom";
 
 function Landing() {
+  document.body.className="moving_background";
+
   return (
     <>
       <div className="landing-container">
@@ -16,16 +18,18 @@ function Landing() {
           </Text>
 
           <div className="button-container">
-            <Button
-              className="button1"
-              variant="filled"
-              size="lg"
-              radius="md"
-              fw={500}
-            >
-              See More
-            </Button>
             <Link to="/home">
+              <Button
+                className="button1"
+                variant="filled"
+                size="lg"
+                radius="md"
+                fw={500}
+              >
+                See More
+              </Button>
+            </Link>
+            <Link to="/state-map">
               <Button
                 className="button2"
                 rightSection={<FaArrowRight />}
