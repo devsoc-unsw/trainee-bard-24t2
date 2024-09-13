@@ -10,6 +10,12 @@ import logoIcon from "../assets/logo-search-bar.png";
 import FruitBox from "../components/FruitBox";
 import cherry from "../assets/cherry.png";
 
+type Fruit = {
+  variant_name: string;
+  image: string;
+  seasonality: number;
+};
+
 function SeasonalFruits() {
   const { state } = useParams();
   const [fruit, setFruit] = useState([]);
@@ -22,12 +28,12 @@ function SeasonalFruits() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5180/seasonal-fruits?state=${state}`
+          `http://localhost:5180/seasonal-fruits/${state?.toLowerCase()}`
         );
         console.log(response.data);
 
         const data = response.data;
-        setFruit(data.fruit);
+        setFruit(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -59,44 +65,51 @@ function SeasonalFruits() {
     }
   };
 
-  // const filteredFruit = fruit
-  //   .filter((fruitItem) => {
-  //     const matchesSearch = fruitItem.name
-  //       .toLowerCase()
-  //       .includes(searchQuery.toLowerCase());
+  // Convert seasonFilter to a number for comparison
+  const seasonFilterMap = {
+    inSeason: 1,
+    likely: 0,
+    notInSeason: -1,
+  };
 
-  //     let matchesSeason;
+  const filteredFruit: Fruit[] = fruit
+    .filter((fruitItem: Fruit) => {
+      const matchesSearch = fruitItem.variant_name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
 
-  //     // If season filter clicked then show all fruits
-  //     // that match the filter, else show all
-  //     if (seasonFilter) {
-  //       matchesSeason = fruitItem.seasonality === seasonFilter;
-  //     } else {
-  //       matchesSeason = true;
-  //     }
+      let matchesSeason;
 
-  //     if (matchesSearch && matchesSeason) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   })
-  //   .sort((a, b) => {
-  //     if (sortOption === "Seasonality") {
-  //       const seasonOrder = {
-  //         inSeason: 1,
-  //         likely: 2,
-  //         notInSeason: 3,
-  //         none: 4,
-  //       };
+      // If season filter clicked then show all fruits
+      // that match the filter, else show all
+      if (seasonFilter !== "") {
+        matchesSeason = fruitItem.seasonality === seasonFilterMap[seasonFilter];
+      } else {
+        matchesSeason = true;
+      }
 
-  //       return seasonOrder[a.seasonality] - seasonOrder[b.seasonality];
-  //     } else if (sortOption === "Alphabetical") {
-  //       return a.name.localeCompare(b.name);
-  //     } else {
-  //       return 0;
-  //     }
-  //   });
+      if (matchesSearch && matchesSeason) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .sort((a: Fruit, b: Fruit) => {
+      if (sortOption === "Seasonality") {
+        const seasonOrder = {
+          inSeason: 1,
+          likely: 2,
+          notInSeason: 3,
+          none: 4,
+        };
+
+        return seasonOrder[a.seasonality] - seasonOrder[b.seasonality];
+      } else if (sortOption === "Alphabetical") {
+        return a.variant_name.localeCompare(b.variant_name);
+      } else {
+        return 0;
+      }
+    });
 
   const arrowIcon = <LuArrowDownUp />;
   const searchIcon = <IoSearchSharp />;
@@ -125,7 +138,7 @@ function SeasonalFruits() {
                 offset: 0,
                 transitionProps: { transition: "pop", duration: 200 },
               }}
-              // onChange={(value) => setSortOption(value)}
+              onChange={(value) => setSortOption(value ?? "Seasonality")}
             />
           </div>
           <div className={classes.searchBar}>
@@ -178,57 +191,14 @@ function SeasonalFruits() {
         </div>
 
         <div className={classes.fruit}>
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          <FruitBox
-            fruitId={1}
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="inSeason"
-          />
-          {/* {filteredFruit.map((fruitItem) => (
+          {filteredFruit.map((fruitItem) => (
             <FruitBox
-              key={fruitItem.fruitId}
-              fruitId={fruitItem.fruitId}
-              fruitName={fruitItem.name}
-              fruitPic={fruitItem.imageUrl || cherry}
+              key={fruitItem.variant_name}
+              fruitName={fruitItem.variant_name}
+              fruitPic={fruitItem.image}
               fruitSeasonality={fruitItem.seasonality}
             />
-          ))} */}
+          ))}
         </div>
       </div>
     </div>
