@@ -129,7 +129,7 @@ function SeasonalFruits() {
           <div className={classes.sortBy}>
             <Select
               checkIconPosition="right"
-              data={["Seasonality", "Alphabetical", "Option 3"]}
+              data={["Seasonality", "Alphabetical"]}
               defaultValue="Seasonality"
               leftSectionPointerEvents="none"
               leftSection={arrowIcon}
