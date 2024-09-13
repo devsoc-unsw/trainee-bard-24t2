@@ -16,6 +16,7 @@ import calories from "../assets/calories.png";
 import zinc from "../assets/zinc.png";
 import phosphorus from "../assets/phosphorus.png";
 import { useNavigate } from "react-router-dom";
+import { CgPill } from "react-icons/cg";
 
 export default function NutrientsSearch() {
   const [fruit, setFruit] = useState([]);
@@ -23,6 +24,7 @@ export default function NutrientsSearch() {
   const navigate = useNavigate();
 
   const searchIcon = <IoSearchSharp />;
+  const pillIcon = <CgPill color="#7a71ca" />;
 
   // Example of fetching from backend ==> suggest that you put it in a separate file
   useEffect(() => {
@@ -59,6 +61,8 @@ export default function NutrientsSearch() {
             <Autocomplete
               className={classes.autocomplete}
               placeholder="Find a fruit via nutrient"
+              leftSectionPointerEvents="none"
+              leftSection={pillIcon}
               rightSectionPointerEvents="none"
               rightSection={searchIcon}
               radius={8}
