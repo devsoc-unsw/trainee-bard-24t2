@@ -6,7 +6,7 @@ import classes from "./FruitBox.module.css";
 type FruitBox = {
   fruitName: string;
   fruitPic: string;
-  fruitSeasonality: string;
+  fruitSeasonality: number;
 };
 
 export default function FruitBox({
@@ -14,15 +14,15 @@ export default function FruitBox({
   fruitPic,
   fruitSeasonality,
 }: FruitBox) {
-  const seasonColour = (fruitSeasonality: string): string => {
+  const seasonColour = (fruitSeasonality: number): string => {
     switch (fruitSeasonality) {
-      case "inSeason":
+      case 1:
         return "#71DD5F";
-      case "likely":
+      case 0:
         return "#FFC342";
-      case "notInSeason":
+      case -1:
         return "#F3725E";
-      case "none":
+      case -2:
         return "transparent";
       default:
         return "transparent";
