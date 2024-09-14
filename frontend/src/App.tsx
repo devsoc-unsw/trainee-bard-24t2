@@ -22,7 +22,7 @@ function App() {
         <Route path="/seasonal-fruits/:state" element={<SeasonalFruits />} />
         <Route path="/nutrientsSearch" element={<NutrientsSearch />} />
         <Route path="/nutrients/:nutrientText" element={<Nutrients />} />
-        <Route path="/fruit/:fruitId" element={<Fruit />} />
+        <Route path="/fruit/:fruitName" element={<Fruit />} />
         <Route path="/search" element={<Search />} />
         <Route path="/game" element={<Game />} />
       </Routes>

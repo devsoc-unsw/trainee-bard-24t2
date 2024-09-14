@@ -61,7 +61,9 @@ export function organiseNutrients(variant: databaseVariant): Nutrition {
     const nutrients = variant.nutrition.nutrients;
 
     for (const n of nutrients) {
-        const { name } = n;
+        const { name, amount } = n;
+
+        if (amount === 0) continue;
 
         if (name.startsWith("Vitamin") || OTHER_VITAMINS.includes(name)) {
             result.vitamins.push(n);
@@ -69,7 +71,10 @@ export function organiseNutrients(variant: databaseVariant): Nutrition {
             result.minerals.push(n);
         } else if (MACROS.includes(name)) {
             // Place main macro in corresponding macro field.
-            result.macros[name.toLowerCase() as keyof typeof result.macros].push(n);
+            result.macros[name.toLowerCase() as keyof typeof result.macros].push({
+                ...n,
+                name: "total"
+            });
         } else if (name.endsWith("Fat")) {
             result.macros.fat.push(n);
         } else if (CARB_TYPES.includes(name)) {

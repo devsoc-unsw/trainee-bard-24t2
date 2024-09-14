@@ -1,0 +1,86 @@
+.main {
+    background-image: linear-gradient(to right bottom, #f7e4b4, #e7a23e, #e57260, #ffa7c3, #daa3d8);
+}
+
+.mainContainer {
+    margin-left: 65px;
+    min-height: 100vh;
+}
+
+.pageHeader {
+    margin: 8vh;
+}
+
+.bottomLeftContainer {
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fruitImage {
+    width: 18vw;
+}
+
+.scrollable {
+    height: 61vh;
+    border-radius: 16px;
+    position: relative;
+}
+
+.opaqueBackground {
+    background-color: #f2f2f2;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    border-radius: 16px;
+}
+
+.nutrientContainer {
+    min-height: 14vh;
+    height: auto;
+    background-color: white;
+
+    /* Create spacing around */
+    margin: 1vh;
+    margin-right: 2.5vh;
+
+    border-radius: 16px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.nutrientsContainerWrapper {
+    position: relative;
+}
+
+.nutrientCategoryBox {
+    height: 90%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    margin-right: 50px;
+}
+
+.nutrientInfo {
+    flex-grow: 4;
+    text-align: left;
+}
+
+.nutrientButtonWrapper {
+    flex-grow: 1;
+}
+
+.shadow {
+    box-shadow: 0 1px 3px #555;
+}
+
+.bananas input::placeholder {
+    border-radius: 5px;
+    color: red;
+}
