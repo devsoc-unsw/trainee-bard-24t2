@@ -69,7 +69,10 @@ export function organiseNutrients(variant: databaseVariant): Nutrition {
             result.minerals.push(n);
         } else if (MACROS.includes(name)) {
             // Place main macro in corresponding macro field.
-            result.macros[name.toLowerCase() as keyof typeof result.macros].push(n);
+            result.macros[name.toLowerCase() as keyof typeof result.macros].push({
+                ...n,
+                name: "total"
+            });
         } else if (name.endsWith("Fat")) {
             result.macros.fat.push(n);
         } else if (CARB_TYPES.includes(name)) {

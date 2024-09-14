@@ -16,6 +16,17 @@ function NutrientList({
   console.log(category)
   console.log(nutrients)
 
+  const getTotalAmount = (macro: Nutrient[]) => {
+    for (const nutrient of macro) {
+      if (nutrient.name === "total") {
+        return nutrient.amount;
+      }
+    }
+
+    // shouldn't happen
+    return -1;
+  }
+
   const numNutrients = (expanded) ? nutrients.length : 3;
 
   return category !== "macros" ? (
@@ -26,9 +37,9 @@ function NutrientList({
     </List>
   ) : (
     <List>
-      <List.Item>{`${nutrients.carbohydrates.carbohydrates.name}: ${nutrients.carbohydrates.carbohydrates.amount}`}</List.Item>
-      <List.Item>{`${nutrients.protien.protein.name}: ${nutrients.protein.protein.amount}`}</List.Item>
-      <List.Item>{`${nutrients.fat.fat.name}: ${nutrients.fat.fat.amount}`}</List.Item>
+      <List.Item>{`Carbohydrates: ${getTotalAmount(nutrients.carbohydrates)}`}</List.Item>
+      <List.Item>{`Protein: ${getTotalAmount(nutrients.protein)}`}</List.Item>
+      <List.Item>{`Fat: ${getTotalAmount(nutrients.fat)}`}</List.Item>
     </List>
   );
 }
