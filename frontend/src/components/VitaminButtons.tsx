@@ -11,7 +11,7 @@ function VitaminButton() {
         <Button className={`${styles.RoundedButton} ${styles.One}`} >A</Button>
       </Link>
 
-      <Link to="/nutrients/Vitamin B">
+      <Link to="/nutrients/Vitamin B1">
         <Button className={`${styles.RoundedButton} ${styles.Two}`} >B</Button>
       </Link>
 
