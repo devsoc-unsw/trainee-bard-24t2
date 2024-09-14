@@ -8,7 +8,7 @@ import FruitStyles from "./Fruit.module.css";
 import FruitImage from "../assets/tempfruit.png";
 
 function Fruit() {
-  const { fruitId } = useParams();
+  const { fruit } = useParams();
 
   const nutrientCategories = [
     { name: "Vitamins", color: "#F3725E", nutrients: [
@@ -76,7 +76,7 @@ function Fruit() {
         {/* Gutter causes overflow issues */}
         <Grid gutter="0" align="stretch" className={FruitStyles.mainContainer}>
           <Grid.Col span={12}>
-            <h1 className={FruitStyles.pageHeader}>Fruit {fruitId}</h1>
+            <h1 className={FruitStyles.pageHeader}>{fruit}</h1>
           </Grid.Col>
           <Grid.Col offset={0.25} span={5} className={FruitStyles.bottomLeftContainer}>
             <img src={FruitImage} alt="Image of Fruit" className={FruitStyles.fruitImage}/>
