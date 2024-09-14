@@ -28,12 +28,13 @@ function Nutrients() {
   const logoImg = <img src={logoIcon} alt="Logo" style={{ width: 20 }} />;
 
   
-  const searchSplit = nutrientText?.split("-");
-  const nutrientName = searchSplit?.length == 1 ? searchSplit[0] : searchSplit?.slice(0, -1).join(" ") || "not found";
-  const searchAmnt = searchSplit?.[1] || "more";
-  const amount = searchAmnt.toLowerCase() === "more";
+  const searchSplit = nutrientText?.toLowerCase().split("-");
+  const amntFound = searchSplit?.find(amnt => amnt === "more" || amnt === "less");
+  const searchAmnt = amntFound || "more";
+  const amount = searchAmnt === "more";
+  const nutrientName = searchSplit?.filter(word => word !== "more" && word !== "less").join(" ") || "not found";
 
-  const defaultSortStr = amount ? "High to low" : "Low to high";
+  const defaultSortStr = searchAmnt === "more" ? "High to low" : "Low to high";
   const [sortOption, setSortOption] = useState(defaultSortStr);
 
   // Example of fetching from backend ==> suggest that you put it in a separate file
