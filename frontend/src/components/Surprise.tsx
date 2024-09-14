@@ -42,7 +42,7 @@ function Surprise() {
 		}
 	}, [loaded, clickWaiting])
 	return (
-		<Container className={styles.GlassPanel} onClick={() => navigate("/surprise")}>
+		<Container className={styles.GlassPanel} onClick={randomFruitPage}>
 			{/* <h2 className={styles.SurpriseText}>Surprise Me</h2> */}
 			{/* To be uncommented if everyone agrees on adding the cat :D (css too)*/}
 			<div className={styles.container}>
