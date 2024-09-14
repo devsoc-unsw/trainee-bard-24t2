@@ -13,7 +13,8 @@ export default function FruitBox() {
  
   return (
     <>
-      <Link to={`https://www.health.gov.au/contacts/alcoholics-anonymous-aa-australia-contact?language=en`}>
+      <Link to={`https://www.health.gov.au/contacts/alcoholics-anonymous-aa-australia-contact?language=en`}
+      target = "_blank">
         <Box
           className={classes.box}
           w={"40rem"}
