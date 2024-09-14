@@ -18,6 +18,12 @@ import phosphorus from "../assets/phosphorus.png";
 import { useNavigate } from "react-router-dom";
 import { CgPill } from "react-icons/cg";
 
+
+interface Word {
+  type: string,
+  word: string
+}
+
 export default function NutrientsSearch() {
   const [fruit, setFruit] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,7 +37,7 @@ export default function NutrientsSearch() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5180/getAllItems`);
-        console.log(response.data.items);
+        
 
         setFruit(response.data.items);
       } catch (error) {
@@ -43,9 +49,33 @@ export default function NutrientsSearch() {
   }, []);
 
   const handleSearch = () => {
-    navigate(`/nutrients/${searchQuery}`);
+    const split = searchQuery.split(" ");
+    const amnt = split.length > 2 ? split[split.length-1] : "";
+    const nutrient = split.slice(0, -2).join("-");
+    console.log(split);
+    navigate(`/nutrients/${nutrient}-${amnt}`.toLowerCase());
   };
 
+
+  const [data, setData] = useState<string[]>([]);
+
+  // Example of fetching from backend ==> suggest that you put it in a separate file
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5180/valid-search-terms/`);
+        const uniqueWords:string[] = Array.from(new Set(response.data.map(item => item.word)));
+        setData(uniqueWords);
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  
   return (
     <div className={classes.container}>
       <Navbar />
@@ -66,6 +96,7 @@ export default function NutrientsSearch() {
               rightSectionPointerEvents="none"
               rightSection={searchIcon}
               radius={8}
+              data={data}
               onChange={(value) => setSearchQuery(value)}
               onKeyDown={(event) => {
                 if (event.key === "Enter") {

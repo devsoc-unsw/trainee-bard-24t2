@@ -58,7 +58,6 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/seasonal-fruits/:state', async (req: Request, res: Response) => {
     try {
       const state = req.params.state;
-      console.log(state);
 
       return res.json(await seasonalFruitsByState(state));
     } catch (error) {
@@ -115,9 +114,9 @@ app.get('/nutrient/:name', async (req: Request, res: Response) => {
 
 app.get('/fruit/', async (req: Request, res: Response) => {
   try {
-    const { fruit, variantId } = req.query;
+    const { fruit, variantIndex } = req.query;
 
-    return res.json(await getFruitNutrition(fruit as String, Number(variantId)));
+    return res.json(await getFruitNutrition((fruit as String), Number(variantIndex)));
   } catch (error: any) {
     return res.status(400).json({ message: error.message || 'An error occured' });
   }

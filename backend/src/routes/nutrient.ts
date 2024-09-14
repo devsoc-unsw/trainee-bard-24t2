@@ -15,12 +15,13 @@ export async function searchNutrient(nutrient: string, amount?: number, greaterT
                 return nutriAmnt < amount;
             }
         }
-        return nutriAmnt > 0;
+        return greaterThan ? nutriAmnt > 0 : true;
     }; 
     
     const nutrientLower = nutrient.toLowerCase();
     let searchResults: Array<Fruit> = [];
     const fruits = await getFruits();
+    let total = 0;
 
     frootLoop: for(const fruit of fruits) {
         for(const variant of fruit.variants) {
@@ -33,6 +34,7 @@ export async function searchNutrient(nutrient: string, amount?: number, greaterT
                     image: fruit.image,
                     value: res.amount
                 });
+                total += res.amount;
                 continue frootLoop;
             }
         }
@@ -42,6 +44,11 @@ export async function searchNutrient(nutrient: string, amount?: number, greaterT
     // searching for fruits high in value will sort largest to smallest (e.g. searching for fruit high in vitamin c), 
     // while searching for fruits low in value will sort smallest to largest (e.g. searching for fruit with low fat).
     searchResults.sort((a, b) => greaterThan ? b.value - a.value : a.value - b.value);
+
+    if(!greaterThan && !amount) {
+        const avg = total / searchResults.length;
+        searchResults = searchResults.filter(fruit => fruit.value <= avg);
+    }
 
     return searchResults;
 }
