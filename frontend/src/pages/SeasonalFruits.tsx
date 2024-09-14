@@ -30,7 +30,7 @@ function SeasonalFruits() {
         const response = await axios.get(
           `http://localhost:5180/seasonal-fruits/${state?.toLowerCase()}`
         );
-        console.log(response.data);
+        
 
         const data = response.data;
         setFruit(data);
@@ -42,7 +42,9 @@ function SeasonalFruits() {
     fetchData();
   }, [state]);
 
-  const fullStateName = (state: string | undefined): string => {
+  const fullStateName = (stateName: string | undefined): string => {
+    const state = stateName?.toUpperCase();
+    
     switch (state) {
       case "NSW":
         return "New South Wales";
@@ -60,8 +62,18 @@ function SeasonalFruits() {
         return "Northern Territory";
       case "ACT":
         return "Australian Capital Territory";
+      case "KANTO":
+      case "JOHTO": 
+      case "HOENN":
+      case "SINNOH":
+      case "UNOVA":
+      case "KALOS":
+      case "ALOLA":
+      case "GALAR":
+      case "PALDEA":
+        return state.charAt(0) + state.slice(1).toLowerCase();
       default:
-        return "Unknown State";
+        return "Unknown state";
     }
   };
 

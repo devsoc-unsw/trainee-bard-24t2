@@ -26,7 +26,7 @@ function Search() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5180/getAllItems`);
-        console.log(response.data);
+        
 
         const data = response.data;
         setFruit(data.items);

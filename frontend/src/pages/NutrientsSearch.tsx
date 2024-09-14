@@ -31,7 +31,7 @@ export default function NutrientsSearch() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5180/getAllItems`);
-        console.log(response.data.items);
+        
 
         setFruit(response.data.items);
       } catch (error) {

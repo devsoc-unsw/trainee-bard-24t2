@@ -25,7 +25,7 @@ function Nutrients() {
   const arrowIcon = <LuArrowDownUp />;
   const searchIcon = <IoSearchSharp />;
   const logoImg = <img src={logoIcon} alt="Logo" style={{ width: 20 }} />;
-  console.log(nutrientText);
+  
   
   const searchSplit = nutrientText?.split("-");
   const nutrientName = searchSplit?.slice(0, -1).join(" ") || "not found";
@@ -42,7 +42,7 @@ function Nutrients() {
         const response = await axios.get(
           `http://localhost:5180/nutrient/${nutrientName}?greaterthan=${amount}`
         );
-        console.log(response.data);
+        
 
         const data = response.data;
         setFruit(data);

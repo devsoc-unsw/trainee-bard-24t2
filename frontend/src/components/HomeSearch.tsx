@@ -24,7 +24,7 @@ export function HomeSearch() {
         const uniqueWords:string[] = Array.from(new Set(response.data.map(item => item.word)));
         setData(uniqueWords);
         setwords(response.data);
-        console.log(response.data);
+        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
