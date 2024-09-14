@@ -8,8 +8,9 @@ function Surprise() {
 
 	return (
 		<Container className={styles.GlassPanel} onClick={() => navigate("/surprise")}>
-			{/* <h2 className={styles.SurpriseText}>Surprise Me</h2> */}
-			<div className={styles.container}>
+			<h2 className={styles.SurpriseText}>Surprise Me</h2>
+			{/* To be uncommented if everyone agrees on adding the cat :D (css too)*/}
+			{/* <div className={styles.container}>
 				<div className={styles.box}>
 				<div className={styles.boxTop}>
 					<ul>
@@ -36,7 +37,7 @@ function Surprise() {
 					</div>
 				</div>
 				</div>
-			</div>
+			</div> */}
 		</Container>
 	);
 }
