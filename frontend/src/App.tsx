@@ -21,11 +21,10 @@ function App() {
         <Route path="/state-map" element={<StateMap />} />
         <Route path="/seasonal-fruits/:state" element={<SeasonalFruits />} />
         <Route path="/nutrientsSearch" element={<NutrientsSearch />} />
-        <Route path="/nutrients/:nutrientName" element={<Nutrients />} />
+        <Route path="/nutrients/:nutrientText" element={<Nutrients />} />
         <Route path="/fruit/:fruitId" element={<Fruit />} />
         <Route path="/search" element={<Search />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/surprise" element={<Surprise />} />
       </Routes>
     </BrowserRouter>
   );

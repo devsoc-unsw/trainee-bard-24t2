@@ -38,9 +38,9 @@ export function HomeSearch() {
 
     if (selectedItem) {
       if (selectedItem.type === 'fruit') {
-        navigate(`/fruit/${value}`); 
+        navigate(`/fruit/${value.toLowerCase()}`); 
       } else if (selectedItem.type === 'nutrient') {
-        navigate(`/nutrients/${value}`);
+        navigate(`/nutrients/${value.split(" ").join("").toLowerCase()}`);
       }
     } else {
       console.error('Selected value not found in words.');

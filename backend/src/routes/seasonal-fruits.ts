@@ -7,7 +7,8 @@ interface Fruit {
 }
 
 export async function seasonalFruitsByState(state: String) : Promise<Fruit[]> {
-    if(state === "nsw") {
+    const stateLower = state.toLowerCase();
+    if(stateLower === "nsw") {
         let seasonalityResults: Array<Fruit> = [];
         const fruits = await getFruits();
     

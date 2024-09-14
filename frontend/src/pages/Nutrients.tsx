@@ -18,21 +18,33 @@ type Fruit = {
 };
 
 function Nutrients() {
-  const { nutrientName } = useParams();
+  const { nutrientText } = useParams();
   const [fruit, setFruit] = useState([]);
-  const [sortOption, setSortOption] = useState("High to low");
   const [searchQuery, setSearchQuery] = useState("");
 
   const arrowIcon = <LuArrowDownUp />;
   const searchIcon = <IoSearchSharp />;
   const logoImg = <img src={logoIcon} alt="Logo" style={{ width: 20 }} />;
+  console.log(nutrientText);
+  
+  const searchSplit = nutrientText?.split("-");
+  const nutrientName = searchSplit?.[0] || "not found";
+  const searchAmnt = searchSplit?.[1] || "more";
+  const amount = searchAmnt.toLowerCase() === "more";
+
+  const defaultSortStr = amount ? "High to low" : "Low to high";
+  const [sortOption, setSortOption] = useState(defaultSortStr);
+
+  console.log(nutrientText);
+  console.log(nutrientName);
+  console.log(amount);
 
   // Example of fetching from backend ==> suggest that you put it in a separate file
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5180/nutrient/${nutrientName}`
+          `http://localhost:5180/nutrient/${nutrientName}?greaterthan=${amount}`
         );
         console.log(response.data);
 
@@ -68,7 +80,7 @@ function Nutrients() {
 
       <div className={classes.innerContainer}>
         <h2 className={classes.title}>
-          <span> Fruits high in </span> <br />
+          <span> Fruits {amount ? "high" : "low"} in </span> <br />
           <span className={classes.titleText}>
             {nutrientName?.toUpperCase()}
           </span>
@@ -79,7 +91,7 @@ function Nutrients() {
             <Select
               checkIconPosition="right"
               data={["High to low", "Low to high", "Alphabetical"]}
-              defaultValue="High to low"
+              defaultValue= {defaultSortStr}
               leftSectionPointerEvents="none"
               leftSection={arrowIcon}
               radius={8}
@@ -87,7 +99,7 @@ function Nutrients() {
                 offset: 0,
                 transitionProps: { transition: "pop", duration: 200 },
               }}
-              onChange={(value) => setSortOption(value ?? "High to low")}
+              onChange={(value) => setSortOption(value ?? defaultSortStr)}
             />
           </div>
           <div className={classes.searchBar}>
