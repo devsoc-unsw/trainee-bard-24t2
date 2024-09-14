@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Tooltip, Stack, rem } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   FaChevronRight,
   FaLocationDot,
@@ -42,6 +42,7 @@ const icondata = [
 ];
 
 function Navbar() {
+  const location = useLocation();
   const [active, setActive] = useState(0);
   const [showText, setShowText] = useState(false);
 
@@ -49,8 +50,8 @@ function Navbar() {
     <NavbarLink
       {...link}
       key={link.label}
-      active={index === active}
-      onClick={() => setActive(index)}
+      active={location.pathname === link.link}
+      onClick={() => setActive(active)}
       showText={showText}
     />
   ));
