@@ -7,6 +7,7 @@ import { LuArrowDownUp } from "react-icons/lu";
 import { IoSearchSharp } from "react-icons/io5";
 import logoIcon from "../assets/logo-search-bar.png";
 import FruitBox from "../components/FruitBox";
+import AlcoholBox from "../components/AlcoholicBox";
 import cherry from "../assets/cherry.png";
 import axios from "axios";
 
@@ -122,7 +123,9 @@ function Nutrients() {
                 fruitSeasonality={-2}
               />
             ))
-          ) : (
+          ) : (nutrientText === "alcohol-more") ? (
+            <AlcoholBox/>
+            ) : (
             <div className={classes.noFruitFound}>
               No fruits found with nutrient "{nutrientName?.toUpperCase()}"
             </div>
