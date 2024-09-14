@@ -40,7 +40,10 @@ export function HomeSearch() {
       if (selectedItem.type === 'fruit') {
         navigate(`/fruit/${value.toLowerCase()}`); 
       } else if (selectedItem.type === 'nutrient') {
-        navigate(`/nutrients/${value.split(" ").join("").toLowerCase()}`);
+        const split = value.split(" ");
+        const amnt = split[split.length-1];
+        const nutrient = split.slice(0, -2).join("-");
+        navigate(`/nutrients/${nutrient}-${amnt}`.toLowerCase());
       }
     } else {
       console.error('Selected value not found in words.');

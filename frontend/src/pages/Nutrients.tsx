@@ -28,16 +28,12 @@ function Nutrients() {
   console.log(nutrientText);
   
   const searchSplit = nutrientText?.split("-");
-  const nutrientName = searchSplit?.[0] || "not found";
+  const nutrientName = searchSplit?.slice(0, -1).join(" ") || "not found";
   const searchAmnt = searchSplit?.[1] || "more";
   const amount = searchAmnt.toLowerCase() === "more";
 
   const defaultSortStr = amount ? "High to low" : "Low to high";
   const [sortOption, setSortOption] = useState(defaultSortStr);
-
-  console.log(nutrientText);
-  console.log(nutrientName);
-  console.log(amount);
 
   // Example of fetching from backend ==> suggest that you put it in a separate file
   useEffect(() => {

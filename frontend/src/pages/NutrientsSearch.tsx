@@ -43,7 +43,10 @@ export default function NutrientsSearch() {
   }, []);
 
   const handleSearch = () => {
-    navigate(`/nutrients/${searchQuery}`);
+    const split = searchQuery.split(" ");
+    const amnt = split[split.length-1];
+    const nutrient = split.slice(0, -2).join("-");
+    navigate(`/nutrients/${nutrient}-${amnt}`.toLowerCase());
   };
 
   return (

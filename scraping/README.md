@@ -1,0 +1,1 @@
+The purpose of this directory is primarily to document the process that went into compiling the data for this project. It does not actively contribute to the running of the app.
