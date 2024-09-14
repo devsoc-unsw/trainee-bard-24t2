@@ -116,8 +116,9 @@ app.get('/nutrient/:name', async (req: Request, res: Response) => {
 app.get('/fruit/', async (req: Request, res: Response) => {
   try {
     const { fruit, variantId } = req.query;
+    console.log(fruit, variantId)
 
-    return res.json(await getFruitNutrition(fruit as String, Number(variantId)));
+    return res.json(await getFruitNutrition((fruit as String), Number(variantId)));
   } catch (error: any) {
     return res.status(400).json({ message: error.message || 'An error occured' });
   }

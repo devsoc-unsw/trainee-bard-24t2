@@ -1,73 +1,78 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Autocomplete, AppShell, Button, List, Grid, ScrollArea } from '@mantine/core';
+import { Autocomplete, AppShell, Button, Grid, ScrollArea } from '@mantine/core';
 import { FaArrowLeft } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
 import NutrientDisplay from "../components/NutrientDisplay";
 import FruitStyles from "./Fruit.module.css";
 import FruitImage from "../assets/tempfruit.png";
+import axios from "axios";
+import NutrientList from "../components/NutrientList";
+
+const CATEGORY_COLOUR_MAP = {
+  vitamins: "#F3725E",
+  macros: "#95D08B",
+  minerals: "#FFDD94",
+  other: "#7AA4D1"
+}
 
 function Fruit() {
-  const { fruit } = useParams();
+  const { fruitName } = useParams();
+  const [variantNutrition, setVariantNutrition] = useState({});
 
-  const nutrientCategories = [
-    { name: "Vitamins", color: "#F3725E", nutrients: [
-      { name: "Vitamin C", percDI: "16%" },
-      { name: "Vitamin E", percDI: "4%" },
-      { name: "Vitamin K", percDI: "16%" }
-    ]},
-    { name: "Macros", color: "#95D08B", nutrients: [
-      { name: "Vitamin C", percDI: "16%" },
-      { name: "Vitamin E", percDI: "4%" },
-      { name: "Vitamin K", percDI: "16%" }
-    ]},
-    { name: "Minerals", color: "#E1A3D8", nutrients: [
-      { name: "Vitamin C", percDI: "16%" },
-      { name: "Vitamin E", percDI: "4%" },
-      { name: "Vitamin K", percDI: "16%" }
-    ]},
-    { name: "Essentials", color: "#FFDD94", nutrients: [
-      { name: "Vitamin C", percDI: "16%" },
-      { name: "Vitamin E", percDI: "4%" },
-      { name: "Vitamin K", percDI: "16%" }
-    ]},
-    { name: "Other", color: "#7AA4D1", nutrients: [
-      { name: "Vitamin C", percDI: "16%" },
-      { name: "Vitamin E", percDI: "4%" },
-      { name: "Vitamin K", percDI: "16%" }
-    ]}
-  ]
+  const capitaliseFirstLetter = (text: string): string => {
+    if (!text) return ""; // Handle empty string or undefined input
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5180/fruit`, {
+            params: { fruit: fruitName, variantId: 9176 }
+          }
+        );
+        console.log(response.data);
+
+        setVariantNutrition(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [fruitName]);
 
   const nutrients = useMemo(() => {
-    return nutrientCategories.map((category, index) => (
-      <div key={index} className={`${FruitStyles.nutrientContainer} ${FruitStyles.shadow}`}>
-        <div className={FruitStyles.nutrientCategoryBox}>
-          <NutrientDisplay name={category.name} color={category.color}/>
+    return Object.entries(variantNutrition).map(([category, value], index) => {
+
+      return (
+        <div key={index} className={`${FruitStyles.nutrientContainer} ${FruitStyles.shadow}`}>
+          <div className={FruitStyles.nutrientCategoryBox}>
+            <NutrientDisplay name={capitaliseFirstLetter(category)} color={CATEGORY_COLOUR_MAP[category.toLowerCase()]}/>
+          </div>
+          <div className={FruitStyles.nutrientInfo}>
+            {/* Same as <ul> and <li> elements */}
+            {/* TODO: Change to fit nutrient values */}
+            <NutrientList category={category} nutrients={value} expanded={false}/>
+          </div>
+          <div className={FruitStyles.nutrientButtonWrapper}>
+            <Button
+              variant="outline"
+              size="md"
+              radius="md"
+              fw={500}
+              color="black"
+              className={FruitStyles.shadow}
+            >
+              See more
+            </Button>
+          </div>
         </div>
-        <div className={FruitStyles.nutrientInfo}>
-          {/* Same as <ul> and <li> elements */}
-          {/* TODO: Change to fit nutrient values */}
-          <List>
-            <List.Item>{`${category.nutrients[0].name}: ${category.nutrients[0].percDI}`}</List.Item>
-            <List.Item>Install dependencies with yarn</List.Item>
-            <List.Item>Install dependencies with yarn</List.Item>
-          </List>
-        </div>
-        <div className={FruitStyles.nutrientButtonWrapper}>
-          <Button
-            variant="outline"
-            size="md"
-            radius="md"
-            fw={500}
-            color="black"
-            className={FruitStyles.shadow}
-          >
-            See more
-          </Button>
-        </div>
-      </div>
-    ))
-  }, [nutrientCategories]);
+      )
+    })
+  }, [variantNutrition]);
 
   return (
     <AppShell>
@@ -76,7 +81,7 @@ function Fruit() {
         {/* Gutter causes overflow issues */}
         <Grid gutter="0" align="stretch" className={FruitStyles.mainContainer}>
           <Grid.Col span={12}>
-            <h1 className={FruitStyles.pageHeader}>{fruit}</h1>
+            <h1 className={FruitStyles.pageHeader}>{fruitName}</h1>
           </Grid.Col>
           <Grid.Col offset={0.25} span={5} className={FruitStyles.bottomLeftContainer}>
             <img src={FruitImage} alt="Image of Fruit" className={FruitStyles.fruitImage}/>
