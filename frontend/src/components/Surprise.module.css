@@ -9,6 +9,7 @@
     border: 1px solid rgba(255, 255, 255, 0.073);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     height: 225px;
+    cursor: pointer;
 }
 
 .GlassPanel:hover {
@@ -22,4 +23,271 @@
     left: 0;
     margin: 0; /* Remove default margin if any */
     color: #000000;
+}
+
+/* Cat in box :3 */
+
+div, ul, li {
+  display: block; 
+  margin: 0; 
+  padding: 0;
+}
+
+.container {
+  position: absolute;
+  margin: auto;
+  width: inherit;
+  height: inherit;
+  top: 0; 
+  bottom: 0px; 
+  left: 0; 
+  right: 0;
+}
+
+.box {
+  margin: 0 auto;
+  width: inherit; 
+  height: inherit;
+  border-radius: 10px;
+  overflow: visible;
+}
+
+.boxTop {
+  position: absolute;
+  margin: 0 auto;
+  width: 130px; 
+  height: 50px;
+  z-index: 9;
+  top: 80px; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  transition: top 0.75s;
+}
+
+.box:hover .boxTop {
+  top: -25px;
+  animation: topdisplay 1.2s;
+}
+
+.boxTop ul {
+  list-style: none;
+  height: 25px;
+  width: 100%;
+}
+
+.boxTop ul li {
+  background: transparent;
+  border: 5px solid #2E16A1;
+  border-radius: 100%;
+  position: absolute;
+}
+
+.first, .last {
+  left: 20%;
+  bottom: 20px;
+  height: 15px;
+  width: 15px;
+}
+
+.middle {
+  margin: 0 auto;
+  left: 0; 
+  right: 0;
+  height: 25px; 
+  width: 25px;
+}
+
+.last {
+  left: 70%;
+}
+
+.lid {
+  margin: 0 auto;
+  background: #3C81FF;
+  width: 100%; 
+  height: 25px;
+}
+
+.lid span {
+  position: absolute;
+  margin: 0 auto;
+  left: 0; 
+  right: 0;
+  background: #3B1BCC;
+  width: 25%; 
+  height: 25px;
+}
+
+.boxBottom {
+  position: absolute;
+  margin: 0 auto;
+  width: 130px; 
+  height: 225px;
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+}
+
+.base {
+  position: absolute;
+  background: #3777EB;
+  border-radius: 0 0 5% 5%;
+  margin: 0 auto;
+  width: 120px; 
+  height: 70px;
+  bottom: 30px; 
+  left: 0; 
+  right: 0;
+  z-index: 4;
+}
+
+.base span {
+  position: absolute;
+  margin: 0 auto;
+  left: 0; 
+  right: 0;
+  background: #2E16A1;
+  width: 25%; 
+  height: 100%;
+}
+
+.cat {
+  position: absolute;
+  margin: 0 auto;
+  left: 0; 
+  right: 0;
+  bottom: 50px;
+  background: #222;
+  width: 50%; 
+  height: 30%;
+  display: none;
+  animation: catdisplay 1s;
+  z-index: 1;
+  transition: bottom 1s;
+}
+
+.cat:before {
+  width: 0;
+  height: 0;
+  border-left: 0 solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #222;
+  top: -15px;
+  left: 0;
+  position: absolute;
+  content: "";
+}
+
+.cat:after {
+  width: 0;
+  height: 0;
+  border-right: 0 solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #222;
+  top: -15px;
+  right: 0;
+  position: absolute;
+  content: "";
+}
+
+.face {
+  position: relative;
+  height: 40px;
+}
+
+.eye {
+  position: absolute;
+  height: 20px; 
+  width: 20px;
+  background: #FFF;
+  border-radius: 100%;
+  top: 15px;
+}
+
+.left { left: 6px; }
+.right { right: 6px; }
+
+.nose {
+  position: absolute;
+  margin: auto;
+  left: 0; 
+  right: 0;
+  height: 3px; 
+  width: 3px;
+  background: #DDD;
+  border-radius: 100%;
+  bottom: 6px;
+}
+
+.mouth {
+  position: absolute;
+  margin: auto;
+  left: 0; 
+  right: 0;
+  height: 10px; 
+  width: 10px;
+  border-bottom: 2px solid #FFF;
+  border-radius: 100%;
+  bottom: 0;
+}
+
+.body {
+  position: relative;
+  height: 55px;
+  overflow: visible;
+}
+
+.hand {
+  position: absolute;
+  top: 10px;
+  height: 10px; 
+  width: 15px;
+  border-radius: 0 0 45% 45%;
+  background: #333;
+  z-index: 2;
+}
+
+.left { left: 6px; }
+.right { right: 6px; }
+
+.rotulo {
+  position: absolute;
+  margin: 0 auto;
+  left: -22px; 
+  right: 0;
+  bottom: 10px;
+  height: 34px; 
+  width: 110px;
+  background: #EDBA73;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.rotulo span {
+  color: #333;
+  text-transform: uppercase;
+  line-height: 2.5em;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.box:hover .boxTop {
+  display: block;
+}
+
+.box:hover .boxBottom .cat {
+  display: block;
+  bottom: 110px;
+  transition: bottom 1s;
+}
+
+@keyframes catdisplay {
+  from { bottom: 50px; }
+  to { bottom: 110px; }
+}
+
+@keyframes topdisplay {
+  from { top: 60px; }
+  to { top: -25px; }
 }
