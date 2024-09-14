@@ -5,7 +5,7 @@ function NutrientDisplay({
   color
 }) {
   return (
-    <div style={{height: "100%", aspectRatio: "1 / 1", borderRadius: "50%", backgroundColor: color, display: "flex", justifyContent: "center", alignItems: "center", fontWeight: "700"}}>{name}</div>
+    <div style={{height: "75px", aspectRatio: "1 / 1", borderRadius: "50%", backgroundColor: color, display: "flex", justifyContent: "center", alignItems: "center", fontWeight: "700"}}>{name}</div>
   )
 }
 

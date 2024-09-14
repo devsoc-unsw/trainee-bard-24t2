@@ -41,7 +41,8 @@
 }
 
 .nutrientContainer {
-    height: 14vh;
+    min-height: 14vh;
+    height: auto;
     background-color: white;
 
     /* Create spacing around */

@@ -19,7 +19,12 @@ function Fruit() {
   const [variantOptions, setVariantOptions] = useState<VariantOption[]>([]);
   const [variantIndex, setVariantIndex] = useState("0");
   const [variantTotalFruit, setVariantTotalFruit] = useState(2);
-  const [fruitImgUrl, setFruitImgUrl] = useState(FruitImage)
+  const [fruitImgUrl, setFruitImgUrl] = useState(FruitImage);
+
+    const capitaliseFirstLetter = (text: string | undefined): string => {
+      if (!text) return ""; // Handle empty string or undefined input
+      return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +63,7 @@ function Fruit() {
         {/* Gutter causes overflow issues */}
         <Grid gutter="0" align="stretch" className={FruitStyles.mainContainer}>
           <Grid.Col span={12}>
-            <h1 className={FruitStyles.pageHeader}>{fruitName}</h1>
+            <h1 className={FruitStyles.pageHeader}>{capitaliseFirstLetter(fruitName)}</h1>
           </Grid.Col>
           <Grid.Col offset={0.25} span={5} className={FruitStyles.bottomLeftContainer}>
             {(variantTotalFruit > 1) 
