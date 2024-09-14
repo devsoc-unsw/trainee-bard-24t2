@@ -58,7 +58,6 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/seasonal-fruits/:state', async (req: Request, res: Response) => {
     try {
       const state = req.params.state;
-      console.log(state);
 
       return res.json(await seasonalFruitsByState(state));
     } catch (error) {

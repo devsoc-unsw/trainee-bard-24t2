@@ -11,6 +11,10 @@
     height: 225px;
 }
 
+.GlassPanel:hover {
+    cursor: pointer;
+}
+
 .SurpriseText {
     position: relative;
     top: 35%;
