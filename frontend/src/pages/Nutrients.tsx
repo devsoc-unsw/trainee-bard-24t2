@@ -25,10 +25,10 @@ function Nutrients() {
   const arrowIcon = <LuArrowDownUp />;
   const searchIcon = <IoSearchSharp />;
   const logoImg = <img src={logoIcon} alt="Logo" style={{ width: 20 }} />;
-  
+
   
   const searchSplit = nutrientText?.split("-");
-  const nutrientName = searchSplit?.slice(0, -1).join(" ") || "not found";
+  const nutrientName = searchSplit?.length == 1 ? searchSplit[0] : searchSplit?.slice(0, -1).join(" ") || "not found";
   const searchAmnt = searchSplit?.[1] || "more";
   const amount = searchAmnt.toLowerCase() === "more";
 
