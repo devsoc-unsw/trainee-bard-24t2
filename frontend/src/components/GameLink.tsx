@@ -1,12 +1,9 @@
 import React from "react";
-import { Container, Image } from "@mantine/core";
+import { Container } from "@mantine/core";
 import { Link } from 'react-router-dom';
 import styles from "./GameLink.module.css";
 
-function Game({
-	height
-}) {
-
+function Game() {
 	return (
 		<Link to="https://suikagame.com/">
 			<Container className={styles.GlassPanel} >

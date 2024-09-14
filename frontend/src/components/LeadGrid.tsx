@@ -1,37 +1,28 @@
 import React from "react";
-import { Container, Grid, SimpleGrid, rem, Space } from '@mantine/core';
+import { Container, Grid, SimpleGrid, Space } from '@mantine/core';
 import BasicMap from "./BasicMap";
 import HomeVitaminsDisplay from "./VitaminsDisplay";
 import { HomeSearch } from "./HomeSearch";
 import GameLink from "./GameLink";
 import Surprise from "./Surprise";
 
-const PRIMARY_COL_HEIGHT = rem(300);
-const TRIGGER_ANIMATION = false;
-
-export function LeadGrid() {
-  const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
-  const SUPER_SECONDARY_COL_HEIGHT = `calc(${SECONDARY_COL_HEIGHT} * 1.75  - var(--mantine-spacing-md) * 1.75 )`;
-  
+export function LeadGrid() {  
   return (
     <Container my="md">
 
       <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
         {/* Top Left Grid */}
         <BasicMap/>
-        {/* <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
-        
+
         <Grid>
           {/* Top Right Grid */}
           <Grid.Col span={12}>
-            {/* <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
-            <GameLink height={SUPER_SECONDARY_COL_HEIGHT}/>
+            <GameLink/>
           </Grid.Col>
 
           {/* Middle Higer Right Grid */}
           <Grid.Col span={12}>
-            {/* <Skeleton height={SUPER_SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
-            <Surprise height={SUPER_SECONDARY_COL_HEIGHT}/>
+            <Surprise/>
           </Grid.Col>
 
         </Grid>
@@ -39,10 +30,8 @@ export function LeadGrid() {
         {/* Bottom Grid */}
         <Grid gutter="md">
           <Grid.Col span={{ md: 24, sm: 12}}>
-            {/* <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={TRIGGER_ANIMATION} /> */}
-            <HomeVitaminsDisplay height={SECONDARY_COL_HEIGHT}/>
+            <HomeVitaminsDisplay/>
           </Grid.Col>
-        
         </Grid>
 
       </SimpleGrid>
