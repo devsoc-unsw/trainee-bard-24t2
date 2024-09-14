@@ -13,13 +13,11 @@ function NutrientList({
   nutrients,
   expanded
 }) {
-  console.log(category)
-  console.log(nutrients)
 
   const getTotalAmount = (macro: Nutrient[]) => {
     for (const nutrient of macro) {
       if (nutrient.name === "total") {
-        return nutrient.amount;
+        return `${nutrient.percentOfDailyNeeds}% R.D.I.`;
       }
     }
 
@@ -32,7 +30,7 @@ function NutrientList({
   return category !== "macros" ? (
     <List>
       {nutrients.slice(0, numNutrients).map((elem: Nutrient, index: number) => (
-        <List.Item key={index}>{`${elem.name}: ${elem.amount}`}</List.Item>
+        <List.Item key={index}>{`${elem.name}: ${elem.percentOfDailyNeeds}% R.D.I.`}</List.Item>
       ))}
     </List>
   ) : (

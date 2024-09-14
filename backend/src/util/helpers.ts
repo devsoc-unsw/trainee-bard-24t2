@@ -61,7 +61,9 @@ export function organiseNutrients(variant: databaseVariant): Nutrition {
     const nutrients = variant.nutrition.nutrients;
 
     for (const n of nutrients) {
-        const { name } = n;
+        const { name, amount } = n;
+
+        if (amount === 0) continue;
 
         if (name.startsWith("Vitamin") || OTHER_VITAMINS.includes(name)) {
             result.vitamins.push(n);
