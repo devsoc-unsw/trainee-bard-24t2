@@ -40,7 +40,7 @@ function Surprise() {
 			randomFruitPage();
 			setClickWaiting(false);
 		}
-	})
+	}, [loaded, clickWaiting])
 	return (
 		<Container className={styles.GlassPanel} onClick={randomFruitPage}>
 			<h2 className={styles.SurpriseText}>Surprise Me</h2>
