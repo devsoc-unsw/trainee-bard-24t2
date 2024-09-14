@@ -11,7 +11,7 @@ import axios from "axios";
 type Fruit = {
   name: string;
   image: string;
-  fruitSeasonality: string;
+  fruitSeasonality: number;
 };
 
 function Search() {
@@ -26,7 +26,7 @@ function Search() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5180/getAllItems`);
-        console.log(response.data);
+        
 
         const data = response.data;
         setFruit(data.items);
@@ -68,19 +68,18 @@ function Search() {
         </div>
 
         <div className={classes.fruit}>
-          <FruitBox
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          {filteredFruit.map((fruitItem) => (
-            <FruitBox
-              key={fruitItem.name}
-              fruitName={fruitItem.name}
-              fruitPic={fruitItem.image}
-              fruitSeasonality="none"
-            />
-          ))}
+          {filteredFruit.length > 0 ? (
+            filteredFruit.map((fruitItem) => (
+              <FruitBox
+                key={fruitItem.name}
+                fruitName={fruitItem.name}
+                fruitPic={fruitItem.image}
+                fruitSeasonality={-2}
+              />
+            ))
+          ) : (
+            <div className={classes.noFruitFound}>No fruits found</div>
+          )}
         </div>
       </div>
     </div>

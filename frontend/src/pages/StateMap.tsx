@@ -15,7 +15,7 @@ function StateMap() {
 
   const handleClick = (state) => {
     if (state === "NSW") {
-      console.log("ok" + state);
+      
       setCurrImage(nswVectorPurple);
       setSelectedState(state);
       setIsSelected(true);

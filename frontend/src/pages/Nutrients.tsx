@@ -14,27 +14,35 @@ type Fruit = {
   name: string;
   image: string;
   value: number;
-  fruitSeasonality: string;
+  fruitSeasonality: number;
 };
 
 function Nutrients() {
-  const { nutrientName } = useParams();
+  const { nutrientText } = useParams();
   const [fruit, setFruit] = useState([]);
-  const [sortOption, setSortOption] = useState("High to low");
   const [searchQuery, setSearchQuery] = useState("");
 
   const arrowIcon = <LuArrowDownUp />;
   const searchIcon = <IoSearchSharp />;
   const logoImg = <img src={logoIcon} alt="Logo" style={{ width: 20 }} />;
 
+  
+  const searchSplit = nutrientText?.split("-");
+  const nutrientName = searchSplit?.length == 1 ? searchSplit[0] : searchSplit?.slice(0, -1).join(" ") || "not found";
+  const searchAmnt = searchSplit?.[1] || "more";
+  const amount = searchAmnt.toLowerCase() === "more";
+
+  const defaultSortStr = amount ? "High to low" : "Low to high";
+  const [sortOption, setSortOption] = useState(defaultSortStr);
+
   // Example of fetching from backend ==> suggest that you put it in a separate file
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5180/nutrient/${nutrientName}`
+          `http://localhost:5180/nutrient/${nutrientName}?greaterthan=${amount}`
         );
-        console.log(response.data);
+        
 
         const data = response.data;
         setFruit(data);
@@ -68,7 +76,7 @@ function Nutrients() {
 
       <div className={classes.innerContainer}>
         <h2 className={classes.title}>
-          <span> Fruits high in </span> <br />
+          <span> Fruits {amount ? "high" : "low"} in </span> <br />
           <span className={classes.titleText}>
             {nutrientName?.toUpperCase()}
           </span>
@@ -79,7 +87,7 @@ function Nutrients() {
             <Select
               checkIconPosition="right"
               data={["High to low", "Low to high", "Alphabetical"]}
-              defaultValue="High to low"
+              defaultValue= {defaultSortStr}
               leftSectionPointerEvents="none"
               leftSection={arrowIcon}
               radius={8}
@@ -87,7 +95,7 @@ function Nutrients() {
                 offset: 0,
                 transitionProps: { transition: "pop", duration: 200 },
               }}
-              onChange={(value) => setSortOption(value ?? "High to low")}
+              onChange={(value) => setSortOption(value ?? defaultSortStr)}
             />
           </div>
           <div className={classes.searchBar}>
@@ -105,19 +113,20 @@ function Nutrients() {
         </div>
 
         <div className={classes.fruit}>
-          <FruitBox
-            fruitName="Cherry"
-            fruitPic={cherry}
-            fruitSeasonality="none"
-          />
-          {filteredFruit.map((fruitItem) => (
-            <FruitBox
-              key={fruitItem.name}
-              fruitName={fruitItem.name}
-              fruitPic={fruitItem.image}
-              fruitSeasonality="none"
-            />
-          ))}
+          {filteredFruit.length > 0 ? (
+            filteredFruit.map((fruitItem) => (
+              <FruitBox
+                key={fruitItem.name}
+                fruitName={fruitItem.name}
+                fruitPic={fruitItem.image}
+                fruitSeasonality={-2}
+              />
+            ))
+          ) : (
+            <div className={classes.noFruitFound}>
+              No fruits found with nutrient "{nutrientName?.toUpperCase()}"
+            </div>
+          )}
         </div>
       </div>
     </div>

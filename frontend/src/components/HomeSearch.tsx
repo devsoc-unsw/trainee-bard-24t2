@@ -24,7 +24,7 @@ export function HomeSearch() {
         const uniqueWords:string[] = Array.from(new Set(response.data.map(item => item.word)));
         setData(uniqueWords);
         setwords(response.data);
-        console.log(response.data);
+        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -38,9 +38,12 @@ export function HomeSearch() {
 
     if (selectedItem) {
       if (selectedItem.type === 'fruit') {
-        navigate(`/fruit/${value}`); 
+        navigate(`/fruit/${value.toLowerCase()}`); 
       } else if (selectedItem.type === 'nutrient') {
-        navigate(`/nutrients/${value}`);
+        const split = value.split(" ");
+        const amnt = split[split.length-1];
+        const nutrient = split.slice(0, -2).join("-");
+        navigate(`/nutrients/${nutrient}-${amnt}`.toLowerCase());
       }
     } else {
       console.error('Selected value not found in words.');
