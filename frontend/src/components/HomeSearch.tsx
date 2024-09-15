@@ -31,7 +31,6 @@ export function HomeSearch() {
         const nutrientsList = wordData
           .filter(item => item.type === 'nutrient')
           .map(item => item.word);
-        setData(uniqueWords);
         setwords(wordData);
         setFruits(fruitsList);
         setNutrients(nutrientsList);
@@ -68,6 +67,7 @@ export function HomeSearch() {
       rightSection={<IconSearch />}
       rightSectionPointerEvents="none"
       radius={100}
+     // data={data}
       data={[
         { group: 'Fruits', items: fruits },
         { group: 'Nutrients', items:nutrients },
