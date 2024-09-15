@@ -11,8 +11,9 @@ interface Word {
 
 export function HomeSearch() {
   const theme = useMantineTheme();
-  const [data, setData] = useState<string[]>([]);
   const [words, setwords] = useState<Word[]>([]);
+  const [fruits, setFruits] = useState<string[]>([]);
+  const [nutrients, setNutrients] = useState<string[]>([]);
   const navigate = useNavigate();
 
 
@@ -22,8 +23,19 @@ export function HomeSearch() {
       try {
         const response = await axios.get(`http://localhost:5180/valid-search-terms/`);
         const uniqueWords:string[] = Array.from(new Set(response.data.map(item => item.word)));
+        const wordData = response.data as Word[];
+
+        const fruitsList = wordData
+          .filter(item => item.type === 'fruit')
+          .map(item => item.word);
+        const nutrientsList = wordData
+          .filter(item => item.type === 'nutrient')
+          .map(item => item.word);
         setData(uniqueWords);
-        setwords(response.data);
+        setwords(wordData);
+        setFruits(fruitsList);
+        setNutrients(nutrientsList);
+        
         
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -56,7 +68,10 @@ export function HomeSearch() {
       rightSection={<IconSearch />}
       rightSectionPointerEvents="none"
       radius={100}
-      data={data}
+      data={[
+        { group: 'Fruits', items: fruits },
+        { group: 'Nutrients', items:nutrients },
+      ]}
       onOptionSubmit={handleItemSubmit} 
       />
   );

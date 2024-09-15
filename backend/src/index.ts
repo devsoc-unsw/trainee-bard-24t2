@@ -1,4 +1,3 @@
-
 import express, { Request, Response } from 'express';
 import { SERVER_PORT } from '../../config.json';
 import { seasonalFruitsByState } from './routes/seasonal-fruits';
