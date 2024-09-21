@@ -19,9 +19,10 @@ function VitaminButton() {
         <Button className={`${styles.RoundedButton} ${styles.Three}`} >C</Button>
       </Link>
 
-      <Link to="/nutrients/Vitamin-D">
+      {/* I banish thee, Vitamin D */}
+      {/* <Link to="/nutrients/Vitamin-D">
         <Button className={`${styles.RoundedButton} ${styles.Four}`} >D</Button>
-      </Link>
+      </Link> */}
       
       <Link to="/nutrients/Vitamin-E">
         <Button className={`${styles.RoundedButton} ${styles.Five}`} >E</Button>
