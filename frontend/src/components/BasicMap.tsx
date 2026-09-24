@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Overlay, AspectRatio, } from '@mantine/core';
 import { useHover } from "@mantine/hooks";
 import { useNavigate } from 'react-router-dom';
+import mapOfAusPurple from "../assets/map_of_aus_purple.png";
 import classes from "./BasicMap.module.css";
 
 function BasicMap() {
@@ -17,7 +18,7 @@ function BasicMap() {
         h={"100%"}
         w="100%"
         fit="contain"
-        src="../../src/assets/map_of_aus_purple.png"
+        src={mapOfAusPurple}
         />
       <Overlay color="#fff" backgroundOpacity={0} blur={hovered ? 0:10 } radius={"md"} zIndex={0}/>
     </AspectRatio>
